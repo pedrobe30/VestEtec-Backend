@@ -36,6 +36,7 @@ builder.Services.AddScoped<IVerificacaoService, VerificacaoService>();
 builder.Services.AddScoped<LoginService>();
 builder.Services.AddScoped<ILoginInterface, LoginService>();
 builder.Services.AddScoped<IAlunoInterface, AlunoService>();
+builder.Services.AddScoped<IEscolaService, EscolaService>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {

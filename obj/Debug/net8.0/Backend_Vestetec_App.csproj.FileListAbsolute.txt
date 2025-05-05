@@ -115,3 +115,4 @@ C:\Users\Bernardo\Controle_de_Estoque\Projeto-App\Backend_Vestetec_App\bin\Debug
 C:\Users\Bernardo\Controle_de_Estoque\Projeto-App\Backend_Vestetec_App\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\Bernardo\Controle_de_Estoque\Projeto-App\Backend_Vestetec_App\bin\Debug\net8.0\Mailjet.Client.dll
 C:\Users\Bernardo\Controle_de_Estoque\Projeto-App\Backend_Vestetec_App\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\Bernardo\Controle_de_Estoque\Projeto-App\Backend_Vestetec_App\obj\Debug\net8.0\Backend_Vestetec_App.sourcelink.json
