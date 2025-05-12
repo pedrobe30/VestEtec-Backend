@@ -6,6 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 using Backend_Vestetec_App.Services;
+using Backend_Vestetec_App.Interfaces;
 
 
 
@@ -37,7 +38,9 @@ builder.Services.AddScoped<LoginService>();
 builder.Services.AddScoped<ILoginInterface, LoginService>();
 builder.Services.AddScoped<IAlunoInterface, AlunoService>();
 builder.Services.AddScoped<IEscolaService, EscolaService>();
-
+builder.Services.AddScoped<ICategoriaService, CategoriaService>();
+builder.Services.AddScoped<IModeloService, ModeloService>();
+builder.Services.AddScoped<ITecidoService, TecidoService>();
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseMySql(connectionString, serverVersion);

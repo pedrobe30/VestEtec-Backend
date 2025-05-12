@@ -40,6 +40,10 @@ public partial class Produto
     [StringLength(255)]
     public string? ImgUrl { get; set; }
 
+    [Column("descricao")]
+    [StringLength(255)]
+    public string? descricao {get; set;}
+
     [ForeignKey("IdCategoria")]
     [InverseProperty("Produtos")]
     public virtual Categoria IdCategoriaNavigation { get; set; } = null!;
