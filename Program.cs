@@ -41,6 +41,7 @@ builder.Services.AddScoped<IEscolaService, EscolaService>();
 builder.Services.AddScoped<ICategoriaService, CategoriaService>();
 builder.Services.AddScoped<IModeloService, ModeloService>();
 builder.Services.AddScoped<ITecidoService, TecidoService>();
+builder.Services.AddScoped<IProdutoService, ProdutoService>();
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseMySql(connectionString, serverVersion);
