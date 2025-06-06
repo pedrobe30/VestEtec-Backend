@@ -25,4 +25,9 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.7.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\produtos\" />
+    <Folder Include="wwwroot\uploads\" />
+  </ItemGroup>
+
 </Project>

@@ -31,24 +31,83 @@ namespace Backend_Vestetec_App.Controllers
             return response.status ? Ok(response) : NotFound(response);
         }
 
-        [HttpPost("completo")]
-        public async Task<ActionResult<ResponseModel<ProdutoDto>>> AddProdutoCompleto([FromBody] ProdutoCompletoDto produtoDto)
+        [HttpGet("categoria/{categoriaId}")]
+        public async Task<ActionResult<ResponseModel<List<ProdutoDto>>>> GetProdutosByCategoria(int categoriaId)
+        {
+            if (categoriaId <= 0)
+            {
+                return BadRequest(new ResponseModel<List<ProdutoDto>>
+                {
+                    status = false,
+                    Mensagem = "ID da categoria deve ser maior que zero",
+                    Dados = new List<ProdutoDto>()
+                });
+            }
+
+            // Call the service method that already exists in your ProdutoService
+            var response = await _produtoService.GetProdutosByCategoriaAsync(categoriaId);
+
+            if (response.status)
+            {
+                return Ok(response);
+            }
+
+            // Return the response even if no products found (it's not necessarily an error)
+            return Ok(response);
+        }
+
+        [HttpPost("AddProduto")]
+        [Consumes("multipart/form-data")]
+        public async Task<ActionResult<ResponseModel<ProdutoDto>>> AddProdutoCompleto([FromForm] ProdutoDto produtoDto)
         {
             if (!ModelState.IsValid)
-                return BadRequest(new ResponseModel<ProdutoDto> { status = false, Mensagem = "Dados inválidos" });
+            {
+                var errors = ModelState
+                    .Where(x => x.Value.Errors.Count > 0)
+                    .Select(x => new { Field = x.Key, Errors = x.Value.Errors.Select(e => e.ErrorMessage) })
+                    .ToList();
+
+                return BadRequest(new ResponseModel<ProdutoDto>
+                {
+                    status = false,
+                    Mensagem = $"Dados inválidos: {string.Join("; ", errors.SelectMany(e => e.Errors))}"
+                });
+            }
 
             var response = await _produtoService.AddProdutoCompletoAsync(produtoDto);
-            return response.status ? CreatedAtAction(nameof(GetProdutoById), new { id = response.Dados.IdProd }, response) : BadRequest(response);
+
+            if (response.status)
+            {
+                // Se o produto foi criado com sucesso, retornamos status 201 (Created)
+                return CreatedAtAction(
+                    nameof(GetProdutoById),
+                    new { id = response.Dados.IdProd },
+                    response
+                );
+            }
+
+            return BadRequest(response);
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<ResponseModel<ProdutoDto>>> UpdateProduto(int id, [FromBody] ProdutoDto produtoDto)
+        [Consumes("multipart/form-data")]
+        public async Task<ActionResult<ResponseModel<ProdutoDto>>> UpdateProdutoComImagem(
+            int id,
+            [FromForm] ProdutoDto produtoDto)
         {
-            if (id != produtoDto.IdProd)
-                return BadRequest(new ResponseModel<ProdutoDto> { status = false, Mensagem = "ID inconsistente" });
-
             if (!ModelState.IsValid)
-                return BadRequest(new ResponseModel<ProdutoDto> { status = false, Mensagem = "Dados inválidos" });
+            {
+                var errors = ModelState
+                    .Where(x => x.Value.Errors.Count > 0)
+                    .Select(x => new { Field = x.Key, Errors = x.Value.Errors.Select(e => e.ErrorMessage) })
+                    .ToList();
+
+                return BadRequest(new ResponseModel<ProdutoDto>
+                {
+                    status = false,
+                    Mensagem = $"Dados inválidos: {string.Join("; ", errors.SelectMany(e => e.Errors))}"
+                });
+            }
 
             var response = await _produtoService.UpdateProdutoAsync(id, produtoDto);
             return response.status ? Ok(response) : BadRequest(response);

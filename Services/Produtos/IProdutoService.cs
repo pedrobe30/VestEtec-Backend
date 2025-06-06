@@ -8,8 +8,11 @@ namespace Backend_Vestetec_App.Interfaces
     {
         Task<ResponseModel<List<ProdutoDto>>> GetAllProdutosAsync();
         Task<ResponseModel<ProdutoDto>> GetProdutoByIdAsync(int id);
-        Task<ResponseModel<ProdutoDto>> AddProdutoCompletoAsync(ProdutoCompletoDto produtoDto);
+        Task<ResponseModel<ProdutoDto>> AddProdutoCompletoAsync(ProdutoDto produtoDto);
         Task<ResponseModel<ProdutoDto>> UpdateProdutoAsync(int id, ProdutoDto produtoDto);
         Task<ResponseModel<bool>> DeleteProdutoAsync(int id);
+        Task<ResponseModel<List<ProdutoDto>>> GetProdutosByCategoriaAsync(int categoriaId);
+
+       
     }
 }

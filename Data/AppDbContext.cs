@@ -46,8 +46,8 @@ public partial class AppDbContext : DbContext
     public virtual DbSet<CodigoVerificacao> CodigosVerificacao {get; set;}
    
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseMySql("server=localhost;database=controle_de_estoque_bd;user=root", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.4.32-mariadb"));
+   // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //    => optionsBuilder.UseMySql("server=localhost;database=controle_de_estoque_bd;user=root", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.4.32-mariadb"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

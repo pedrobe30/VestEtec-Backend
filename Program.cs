@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 using Backend_Vestetec_App.Services;
 using Backend_Vestetec_App.Interfaces;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
+using System.Text.Json;
 
 
 
@@ -42,10 +45,43 @@ builder.Services.AddScoped<ICategoriaService, CategoriaService>();
 builder.Services.AddScoped<IModeloService, ModeloService>();
 builder.Services.AddScoped<ITecidoService, TecidoService>();
 builder.Services.AddScoped<IProdutoService, ProdutoService>();
+builder.Services.AddScoped<IImageService, ImageService>();
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseMySql(connectionString, serverVersion);
 });
+
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        // Converte PascalCase (C#) para camelCase (JavaScript)
+        options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+
+    });
+
+
+
+// NOVA CONFIGURAÇÃO: Configura o tamanho máximo para upload de arquivos
+builder.Services.Configure<IISServerOptions>(options =>
+{
+    options.MaxRequestBodySize = 3 * 1024 * 1024;
+});
+
+// NOVA CONFIGURAÇÃO: Para servidores Kestrel
+builder.Services.Configure<KestrelServerOptions>(options =>
+{
+    options.Limits.MaxRequestBodySize = 3 * 1024 * 1024; 
+});
+
+// NOVA CONFIGURAÇÃO: Configura as opções de formulário para aceitar arquivos maiores
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.ValueLengthLimit = int.MaxValue;
+    options.MultipartBodyLengthLimit = 3 * 1024 * 1024; 
+    options.MultipartHeadersLengthLimit = int.MaxValue;
+});
+
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddAuthentication(options =>
 {
@@ -70,6 +106,29 @@ builder.Services.AddAuthentication(options =>
 
 
 var app = builder.Build();
+
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    OnPrepareResponse = ctx =>
+    {
+        // Adicionar headers CORS para imagens
+        ctx.Context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+        ctx.Context.Response.Headers.Add("Access-Control-Allow-Methods", "GET");
+        ctx.Context.Response.Headers.Add("Access-Control-Allow-Headers", "Content-Type");
+    }
+});
+
+// IMPORTANTE: Certificar-se de que a pasta wwwroot/uploads/produtos existe
+// Você pode adicionar esta verificação no startup da aplicação:
+var uploadsPath = Path.Combine(app.Environment.WebRootPath ??
+    Path.Combine(app.Environment.ContentRootPath, "wwwroot"), "uploads", "produtos");
+
+if (!Directory.Exists(uploadsPath))
+{
+    Directory.CreateDirectory(uploadsPath);
+    Console.WriteLine($"Diretório criado: {uploadsPath}");
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
