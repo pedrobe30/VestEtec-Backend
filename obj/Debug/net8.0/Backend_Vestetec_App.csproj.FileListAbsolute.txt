@@ -239,3 +239,4 @@ D:\home\pedro_24209\bernardo\Backend_VestEtec\obj\Debug\net8.0\Backend_Vestetec_
 D:\home\pedro_24209\bernardo\Backend_VestEtec\obj\Debug\net8.0\Backend_Vestetec_App.genruntimeconfig.cache
 D:\home\pedro_24209\bernardo\Backend_VestEtec\obj\Debug\net8.0\ref\Backend_Vestetec_App.dll
 D:\home\pedro_24209\bernardo\Backend_VestEtec\bin\Debug\net8.0\Backend_Vestetec_App.staticwebassets.runtime.json
+C:\Users\Bernardo\Controle_de_Estoque\Projeto-App\Backend_Vestetec_App\bin\Debug\net8.0\Backend_Vestetec_App.staticwebassets.runtime.json

@@ -59,21 +59,26 @@ builder.Services.AddControllers()
 
     });
 
+    builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(5260); // Aceita em qualquer IP
+});
 
 
-// NOVA CONFIGURAÇÃO: Configura o tamanho máximo para upload de arquivos
+
+// NOVA CONFIGURAï¿½ï¿½O: Configura o tamanho mï¿½ximo para upload de arquivos
 builder.Services.Configure<IISServerOptions>(options =>
 {
     options.MaxRequestBodySize = 3 * 1024 * 1024;
 });
 
-// NOVA CONFIGURAÇÃO: Para servidores Kestrel
+// NOVA CONFIGURAï¿½ï¿½O: Para servidores Kestrel
 builder.Services.Configure<KestrelServerOptions>(options =>
 {
     options.Limits.MaxRequestBodySize = 3 * 1024 * 1024; 
 });
 
-// NOVA CONFIGURAÇÃO: Configura as opções de formulário para aceitar arquivos maiores
+// NOVA CONFIGURAï¿½ï¿½O: Configura as opï¿½ï¿½es de formulï¿½rio para aceitar arquivos maiores
 builder.Services.Configure<FormOptions>(options =>
 {
     options.ValueLengthLimit = int.MaxValue;
@@ -120,14 +125,14 @@ app.UseStaticFiles(new StaticFileOptions
 });
 
 // IMPORTANTE: Certificar-se de que a pasta wwwroot/uploads/produtos existe
-// Você pode adicionar esta verificação no startup da aplicação:
+// Vocï¿½ pode adicionar esta verificaï¿½ï¿½o no startup da aplicaï¿½ï¿½o:
 var uploadsPath = Path.Combine(app.Environment.WebRootPath ??
     Path.Combine(app.Environment.ContentRootPath, "wwwroot"), "uploads", "produtos");
 
 if (!Directory.Exists(uploadsPath))
 {
     Directory.CreateDirectory(uploadsPath);
-    Console.WriteLine($"Diretório criado: {uploadsPath}");
+    Console.WriteLine($"Diretï¿½rio criado: {uploadsPath}");
 }
 
 // Configure the HTTP request pipeline.

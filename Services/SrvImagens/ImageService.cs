@@ -91,7 +91,7 @@ namespace Backend_Vestetec_App.Services
                 }
 
                 // Fallback para desenvolvimento local
-                return $"https://localhost:7024{relativePath}";
+                return $"{relativePath}";
 
             }
             catch (Exception ex)
@@ -158,11 +158,12 @@ namespace Backend_Vestetec_App.Services
                 var relativePath = $"/{folderPath}/{uniqueFileName}".Replace("\\", "/");
 
                 // Converter para URL absoluta
-                var absoluteUrl = GetAbsoluteImageUrl(relativePath);
 
-                _logger.LogInformation($"Imagem salva com sucesso: {absoluteUrl}");
 
-                return absoluteUrl; // Retorna URL absoluta
+                _logger.LogInformation($"Imagem salva com sucesso: {relativePath}");
+
+                return relativePath;
+
             }
             catch (Exception ex)
             {
