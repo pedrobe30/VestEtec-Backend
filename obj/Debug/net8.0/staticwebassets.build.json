@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Du5tUDDRzW/WPD6gRGR6TDhArVTYwp6ct6lji3QJEyo=",
+  "Hash": "cUXNfvH3Nwm7rVpeBCRF+xHEfqzEOMINvwgMd1OlJrw=",
   "Source": "Backend_Vestetec_App",
   "BasePath": "_content/Backend_Vestetec_App",
   "Mode": "Default",
@@ -10,334 +10,1970 @@
     {
       "Name": "Backend_Vestetec_App\\wwwroot",
       "Source": "Backend_Vestetec_App",
-      "ContentRoot": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\",
+      "ContentRoot": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\",
       "BasePath": "_content/Backend_Vestetec_App",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\uploads\\produtos\\07e7e1b8-2baa-4144-82be-a3a231c4aa4c.png",
+      "Identity": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\07e7e1b8-2baa-4144-82be-a3a231c4aa4c.png",
       "SourceId": "Backend_Vestetec_App",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\",
+      "ContentRoot": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\",
       "BasePath": "_content/Backend_Vestetec_App",
-      "RelativePath": "uploads/produtos/07e7e1b8-2baa-4144-82be-a3a231c4aa4c.png",
+      "RelativePath": "uploads/produtos/07e7e1b8-2baa-4144-82be-a3a231c4aa4c#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "ej3i6p7sr7",
+      "Integrity": "ahxgMqlaQc17/4wN6Yr/kjopMvAkw8fZQWZtS/tLp+g=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\produtos\\07e7e1b8-2baa-4144-82be-a3a231c4aa4c.png"
     },
     {
-      "Identity": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\uploads\\produtos\\1685607c-9997-40ca-8f42-53aba6f344a7.png",
+      "Identity": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\1685607c-9997-40ca-8f42-53aba6f344a7.png",
       "SourceId": "Backend_Vestetec_App",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\",
+      "ContentRoot": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\",
       "BasePath": "_content/Backend_Vestetec_App",
-      "RelativePath": "uploads/produtos/1685607c-9997-40ca-8f42-53aba6f344a7.png",
+      "RelativePath": "uploads/produtos/1685607c-9997-40ca-8f42-53aba6f344a7#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "tlul5rmd8y",
+      "Integrity": "z2CMb8LGlwTgiiY68/uvKn27h1JkgCrsZQjgKzIdVn8=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\produtos\\1685607c-9997-40ca-8f42-53aba6f344a7.png"
     },
     {
-      "Identity": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\uploads\\produtos\\1a037a8c-fad9-472f-9f22-958f504a64eb.png",
+      "Identity": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\1a037a8c-fad9-472f-9f22-958f504a64eb.png",
       "SourceId": "Backend_Vestetec_App",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\",
+      "ContentRoot": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\",
       "BasePath": "_content/Backend_Vestetec_App",
-      "RelativePath": "uploads/produtos/1a037a8c-fad9-472f-9f22-958f504a64eb.png",
+      "RelativePath": "uploads/produtos/1a037a8c-fad9-472f-9f22-958f504a64eb#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "z3xomgpqhi",
+      "Integrity": "YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\produtos\\1a037a8c-fad9-472f-9f22-958f504a64eb.png"
     },
     {
-      "Identity": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\uploads\\produtos\\249cfbeb-279d-42c4-b619-b6d56ba9e031.png",
+      "Identity": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\249cfbeb-279d-42c4-b619-b6d56ba9e031.png",
       "SourceId": "Backend_Vestetec_App",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\",
+      "ContentRoot": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\",
       "BasePath": "_content/Backend_Vestetec_App",
-      "RelativePath": "uploads/produtos/249cfbeb-279d-42c4-b619-b6d56ba9e031.png",
+      "RelativePath": "uploads/produtos/249cfbeb-279d-42c4-b619-b6d56ba9e031#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "z3xomgpqhi",
+      "Integrity": "YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\produtos\\249cfbeb-279d-42c4-b619-b6d56ba9e031.png"
     },
     {
-      "Identity": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\uploads\\produtos\\3308a2d6-d8b1-4d24-929c-6f4102e3f7c7.png",
+      "Identity": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\3308a2d6-d8b1-4d24-929c-6f4102e3f7c7.png",
       "SourceId": "Backend_Vestetec_App",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\",
+      "ContentRoot": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\",
       "BasePath": "_content/Backend_Vestetec_App",
-      "RelativePath": "uploads/produtos/3308a2d6-d8b1-4d24-929c-6f4102e3f7c7.png",
+      "RelativePath": "uploads/produtos/3308a2d6-d8b1-4d24-929c-6f4102e3f7c7#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "tlul5rmd8y",
+      "Integrity": "z2CMb8LGlwTgiiY68/uvKn27h1JkgCrsZQjgKzIdVn8=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\produtos\\3308a2d6-d8b1-4d24-929c-6f4102e3f7c7.png"
     },
     {
-      "Identity": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\uploads\\produtos\\4cd6593d-adf3-4dbb-9da1-71549c59c2b1.png",
+      "Identity": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\4cd6593d-adf3-4dbb-9da1-71549c59c2b1.png",
       "SourceId": "Backend_Vestetec_App",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\",
+      "ContentRoot": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\",
       "BasePath": "_content/Backend_Vestetec_App",
-      "RelativePath": "uploads/produtos/4cd6593d-adf3-4dbb-9da1-71549c59c2b1.png",
+      "RelativePath": "uploads/produtos/4cd6593d-adf3-4dbb-9da1-71549c59c2b1#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "omelhj2hrj",
+      "Integrity": "sIXLrmZ6y2qEbqDGyMR+T/YSf4i1a3ZSzwqs1VeKlCo=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\produtos\\4cd6593d-adf3-4dbb-9da1-71549c59c2b1.png"
     },
     {
-      "Identity": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\uploads\\produtos\\58afdc99-619e-48ca-996b-764572a3201a.png",
+      "Identity": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\58afdc99-619e-48ca-996b-764572a3201a.png",
       "SourceId": "Backend_Vestetec_App",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\",
+      "ContentRoot": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\",
       "BasePath": "_content/Backend_Vestetec_App",
-      "RelativePath": "uploads/produtos/58afdc99-619e-48ca-996b-764572a3201a.png",
+      "RelativePath": "uploads/produtos/58afdc99-619e-48ca-996b-764572a3201a#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "z3xomgpqhi",
+      "Integrity": "YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\produtos\\58afdc99-619e-48ca-996b-764572a3201a.png"
     },
     {
-      "Identity": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\uploads\\produtos\\6f6c092c-0080-4c39-aa10-490de106dc22.png",
+      "Identity": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\6f6c092c-0080-4c39-aa10-490de106dc22.png",
       "SourceId": "Backend_Vestetec_App",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\",
+      "ContentRoot": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\",
       "BasePath": "_content/Backend_Vestetec_App",
-      "RelativePath": "uploads/produtos/6f6c092c-0080-4c39-aa10-490de106dc22.png",
+      "RelativePath": "uploads/produtos/6f6c092c-0080-4c39-aa10-490de106dc22#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "z3xomgpqhi",
+      "Integrity": "YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\produtos\\6f6c092c-0080-4c39-aa10-490de106dc22.png"
     },
     {
-      "Identity": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\uploads\\produtos\\a3e6b500-84e2-4011-9672-09b82f5155d3.png",
+      "Identity": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\7b192c1e-faed-4639-8598-90b1e5737263.png",
       "SourceId": "Backend_Vestetec_App",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\",
+      "ContentRoot": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\",
       "BasePath": "_content/Backend_Vestetec_App",
-      "RelativePath": "uploads/produtos/a3e6b500-84e2-4011-9672-09b82f5155d3.png",
+      "RelativePath": "uploads/produtos/7b192c1e-faed-4639-8598-90b1e5737263#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "4erzkncanj",
+      "Integrity": "lPoK2AkT7vXgqITUdevQXiWlSLlQP8f1jgx7RFOkpBA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\produtos\\7b192c1e-faed-4639-8598-90b1e5737263.png"
+    },
+    {
+      "Identity": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\a3e6b500-84e2-4011-9672-09b82f5155d3.png",
+      "SourceId": "Backend_Vestetec_App",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\",
+      "BasePath": "_content/Backend_Vestetec_App",
+      "RelativePath": "uploads/produtos/a3e6b500-84e2-4011-9672-09b82f5155d3#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "z3xomgpqhi",
+      "Integrity": "YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\produtos\\a3e6b500-84e2-4011-9672-09b82f5155d3.png"
     },
     {
-      "Identity": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\uploads\\produtos\\bca15bb8-cd6e-4b54-afc5-d9d981d9fa02.png",
+      "Identity": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\bca15bb8-cd6e-4b54-afc5-d9d981d9fa02.png",
       "SourceId": "Backend_Vestetec_App",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\",
+      "ContentRoot": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\",
       "BasePath": "_content/Backend_Vestetec_App",
-      "RelativePath": "uploads/produtos/bca15bb8-cd6e-4b54-afc5-d9d981d9fa02.png",
+      "RelativePath": "uploads/produtos/bca15bb8-cd6e-4b54-afc5-d9d981d9fa02#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "ju1qcvh9zb",
+      "Integrity": "JbxwAXC2vcrzihkNTzrerxwt5Y9dFzgmQM28QO2MNCs=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\produtos\\bca15bb8-cd6e-4b54-afc5-d9d981d9fa02.png"
     },
     {
-      "Identity": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\uploads\\produtos\\bd3bf1db-a49c-4b51-88d6-70a28a34959f.png",
+      "Identity": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\bd3bf1db-a49c-4b51-88d6-70a28a34959f.png",
       "SourceId": "Backend_Vestetec_App",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\",
+      "ContentRoot": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\",
       "BasePath": "_content/Backend_Vestetec_App",
-      "RelativePath": "uploads/produtos/bd3bf1db-a49c-4b51-88d6-70a28a34959f.png",
+      "RelativePath": "uploads/produtos/bd3bf1db-a49c-4b51-88d6-70a28a34959f#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "z3xomgpqhi",
+      "Integrity": "YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\produtos\\bd3bf1db-a49c-4b51-88d6-70a28a34959f.png"
     },
     {
-      "Identity": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\uploads\\produtos\\c27a8961-11bc-4b65-af51-cf654e08ca6c.png",
+      "Identity": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\c27a8961-11bc-4b65-af51-cf654e08ca6c.png",
       "SourceId": "Backend_Vestetec_App",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\",
+      "ContentRoot": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\",
       "BasePath": "_content/Backend_Vestetec_App",
-      "RelativePath": "uploads/produtos/c27a8961-11bc-4b65-af51-cf654e08ca6c.png",
+      "RelativePath": "uploads/produtos/c27a8961-11bc-4b65-af51-cf654e08ca6c#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "z3xomgpqhi",
+      "Integrity": "YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\produtos\\c27a8961-11bc-4b65-af51-cf654e08ca6c.png"
     },
     {
-      "Identity": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\uploads\\produtos\\c6cd3cc8-3bd6-4731-b98c-42718b741a43.png",
+      "Identity": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\c6cd3cc8-3bd6-4731-b98c-42718b741a43.png",
       "SourceId": "Backend_Vestetec_App",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\",
+      "ContentRoot": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\",
       "BasePath": "_content/Backend_Vestetec_App",
-      "RelativePath": "uploads/produtos/c6cd3cc8-3bd6-4731-b98c-42718b741a43.png",
+      "RelativePath": "uploads/produtos/c6cd3cc8-3bd6-4731-b98c-42718b741a43#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "z3xomgpqhi",
+      "Integrity": "YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\produtos\\c6cd3cc8-3bd6-4731-b98c-42718b741a43.png"
     },
     {
-      "Identity": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\uploads\\produtos\\d457d953-c738-4e66-b1cc-8e05fe3b1534.png",
+      "Identity": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\d457d953-c738-4e66-b1cc-8e05fe3b1534.png",
       "SourceId": "Backend_Vestetec_App",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\",
+      "ContentRoot": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\",
       "BasePath": "_content/Backend_Vestetec_App",
-      "RelativePath": "uploads/produtos/d457d953-c738-4e66-b1cc-8e05fe3b1534.png",
+      "RelativePath": "uploads/produtos/d457d953-c738-4e66-b1cc-8e05fe3b1534#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "gib8zw23da",
+      "Integrity": "uLDGjpdGA7GulJ5zyBFfKG1e3pIBNTICf+aI6O7ABXk=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\produtos\\d457d953-c738-4e66-b1cc-8e05fe3b1534.png"
     },
     {
-      "Identity": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\uploads\\produtos\\e55b4c11-8eec-4c5a-950d-7c318cc44653.png",
+      "Identity": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\e55b4c11-8eec-4c5a-950d-7c318cc44653.png",
       "SourceId": "Backend_Vestetec_App",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\",
+      "ContentRoot": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\",
       "BasePath": "_content/Backend_Vestetec_App",
-      "RelativePath": "uploads/produtos/e55b4c11-8eec-4c5a-950d-7c318cc44653.png",
+      "RelativePath": "uploads/produtos/e55b4c11-8eec-4c5a-950d-7c318cc44653#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "tlul5rmd8y",
+      "Integrity": "z2CMb8LGlwTgiiY68/uvKn27h1JkgCrsZQjgKzIdVn8=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\produtos\\e55b4c11-8eec-4c5a-950d-7c318cc44653.png"
     },
     {
-      "Identity": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\uploads\\produtos\\e9082c11-acd9-4531-8c73-c4cafad041ae.png",
+      "Identity": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\e9082c11-acd9-4531-8c73-c4cafad041ae.png",
       "SourceId": "Backend_Vestetec_App",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\",
+      "ContentRoot": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\",
       "BasePath": "_content/Backend_Vestetec_App",
-      "RelativePath": "uploads/produtos/e9082c11-acd9-4531-8c73-c4cafad041ae.png",
+      "RelativePath": "uploads/produtos/e9082c11-acd9-4531-8c73-c4cafad041ae#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "z3xomgpqhi",
+      "Integrity": "YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\produtos\\e9082c11-acd9-4531-8c73-c4cafad041ae.png"
     },
     {
-      "Identity": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\uploads\\produtos\\ffce52de-f1c3-4ca4-954a-7f9b50911d04.png",
+      "Identity": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\f5115756-5b9b-4c0c-bb22-667892ea491e.png",
       "SourceId": "Backend_Vestetec_App",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\",
+      "ContentRoot": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\",
       "BasePath": "_content/Backend_Vestetec_App",
-      "RelativePath": "uploads/produtos/ffce52de-f1c3-4ca4-954a-7f9b50911d04.png",
+      "RelativePath": "uploads/produtos/f5115756-5b9b-4c0c-bb22-667892ea491e#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeBehavior": "",
       "AssetMergeSource": "",
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
+      "Fingerprint": "eea61hk9je",
+      "Integrity": "2oBkEAwJut+se4zZrfvhNNp+xJgi7NtqJYkrklDtPyA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\produtos\\f5115756-5b9b-4c0c-bb22-667892ea491e.png"
+    },
+    {
+      "Identity": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\ffce52de-f1c3-4ca4-954a-7f9b50911d04.png",
+      "SourceId": "Backend_Vestetec_App",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\",
+      "BasePath": "_content/Backend_Vestetec_App",
+      "RelativePath": "uploads/produtos/ffce52de-f1c3-4ca4-954a-7f9b50911d04#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "z3xomgpqhi",
+      "Integrity": "YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\produtos\\ffce52de-f1c3-4ca4-954a-7f9b50911d04.png"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "uploads/produtos/07e7e1b8-2baa-4144-82be-a3a231c4aa4c.ej3i6p7sr7.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\07e7e1b8-2baa-4144-82be-a3a231c4aa4c.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4827"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ahxgMqlaQc17/4wN6Yr/kjopMvAkw8fZQWZtS/tLp+g=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 02 Jun 2025 23:04:44 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ej3i6p7sr7"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/produtos/07e7e1b8-2baa-4144-82be-a3a231c4aa4c.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ahxgMqlaQc17/4wN6Yr/kjopMvAkw8fZQWZtS/tLp+g="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/07e7e1b8-2baa-4144-82be-a3a231c4aa4c.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\07e7e1b8-2baa-4144-82be-a3a231c4aa4c.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4827"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ahxgMqlaQc17/4wN6Yr/kjopMvAkw8fZQWZtS/tLp+g=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 02 Jun 2025 23:04:44 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ahxgMqlaQc17/4wN6Yr/kjopMvAkw8fZQWZtS/tLp+g="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/1685607c-9997-40ca-8f42-53aba6f344a7.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\1685607c-9997-40ca-8f42-53aba6f344a7.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "260336"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"z2CMb8LGlwTgiiY68/uvKn27h1JkgCrsZQjgKzIdVn8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 29 May 2025 00:19:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-z2CMb8LGlwTgiiY68/uvKn27h1JkgCrsZQjgKzIdVn8="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/1685607c-9997-40ca-8f42-53aba6f344a7.tlul5rmd8y.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\1685607c-9997-40ca-8f42-53aba6f344a7.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "260336"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"z2CMb8LGlwTgiiY68/uvKn27h1JkgCrsZQjgKzIdVn8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 29 May 2025 00:19:22 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "tlul5rmd8y"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/produtos/1685607c-9997-40ca-8f42-53aba6f344a7.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-z2CMb8LGlwTgiiY68/uvKn27h1JkgCrsZQjgKzIdVn8="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/1a037a8c-fad9-472f-9f22-958f504a64eb.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\1a037a8c-fad9-472f-9f22-958f504a64eb.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5985"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 02 Jun 2025 23:25:21 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/1a037a8c-fad9-472f-9f22-958f504a64eb.z3xomgpqhi.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\1a037a8c-fad9-472f-9f22-958f504a64eb.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5985"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 02 Jun 2025 23:25:21 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "z3xomgpqhi"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/produtos/1a037a8c-fad9-472f-9f22-958f504a64eb.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/249cfbeb-279d-42c4-b619-b6d56ba9e031.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\249cfbeb-279d-42c4-b619-b6d56ba9e031.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5985"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 03 Jun 2025 00:29:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/249cfbeb-279d-42c4-b619-b6d56ba9e031.z3xomgpqhi.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\249cfbeb-279d-42c4-b619-b6d56ba9e031.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5985"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 03 Jun 2025 00:29:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "z3xomgpqhi"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/produtos/249cfbeb-279d-42c4-b619-b6d56ba9e031.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/3308a2d6-d8b1-4d24-929c-6f4102e3f7c7.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\3308a2d6-d8b1-4d24-929c-6f4102e3f7c7.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "260336"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"z2CMb8LGlwTgiiY68/uvKn27h1JkgCrsZQjgKzIdVn8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 04 Jun 2025 22:17:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-z2CMb8LGlwTgiiY68/uvKn27h1JkgCrsZQjgKzIdVn8="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/3308a2d6-d8b1-4d24-929c-6f4102e3f7c7.tlul5rmd8y.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\3308a2d6-d8b1-4d24-929c-6f4102e3f7c7.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "260336"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"z2CMb8LGlwTgiiY68/uvKn27h1JkgCrsZQjgKzIdVn8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 04 Jun 2025 22:17:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "tlul5rmd8y"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/produtos/3308a2d6-d8b1-4d24-929c-6f4102e3f7c7.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-z2CMb8LGlwTgiiY68/uvKn27h1JkgCrsZQjgKzIdVn8="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/4cd6593d-adf3-4dbb-9da1-71549c59c2b1.omelhj2hrj.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\4cd6593d-adf3-4dbb-9da1-71549c59c2b1.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "9738"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"sIXLrmZ6y2qEbqDGyMR+T/YSf4i1a3ZSzwqs1VeKlCo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 04 Jun 2025 22:13:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "omelhj2hrj"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/produtos/4cd6593d-adf3-4dbb-9da1-71549c59c2b1.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-sIXLrmZ6y2qEbqDGyMR+T/YSf4i1a3ZSzwqs1VeKlCo="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/4cd6593d-adf3-4dbb-9da1-71549c59c2b1.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\4cd6593d-adf3-4dbb-9da1-71549c59c2b1.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "9738"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"sIXLrmZ6y2qEbqDGyMR+T/YSf4i1a3ZSzwqs1VeKlCo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 04 Jun 2025 22:13:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-sIXLrmZ6y2qEbqDGyMR+T/YSf4i1a3ZSzwqs1VeKlCo="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/58afdc99-619e-48ca-996b-764572a3201a.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\58afdc99-619e-48ca-996b-764572a3201a.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5985"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 02 Jun 2025 22:19:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/58afdc99-619e-48ca-996b-764572a3201a.z3xomgpqhi.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\58afdc99-619e-48ca-996b-764572a3201a.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5985"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 02 Jun 2025 22:19:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "z3xomgpqhi"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/produtos/58afdc99-619e-48ca-996b-764572a3201a.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/6f6c092c-0080-4c39-aa10-490de106dc22.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\6f6c092c-0080-4c39-aa10-490de106dc22.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5985"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 04 Jun 2025 22:06:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/6f6c092c-0080-4c39-aa10-490de106dc22.z3xomgpqhi.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\6f6c092c-0080-4c39-aa10-490de106dc22.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5985"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 04 Jun 2025 22:06:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "z3xomgpqhi"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/produtos/6f6c092c-0080-4c39-aa10-490de106dc22.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/7b192c1e-faed-4639-8598-90b1e5737263.4erzkncanj.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\7b192c1e-faed-4639-8598-90b1e5737263.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "37504"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"lPoK2AkT7vXgqITUdevQXiWlSLlQP8f1jgx7RFOkpBA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 09 Jun 2025 22:09:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "4erzkncanj"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/produtos/7b192c1e-faed-4639-8598-90b1e5737263.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-lPoK2AkT7vXgqITUdevQXiWlSLlQP8f1jgx7RFOkpBA="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/7b192c1e-faed-4639-8598-90b1e5737263.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\7b192c1e-faed-4639-8598-90b1e5737263.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "37504"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"lPoK2AkT7vXgqITUdevQXiWlSLlQP8f1jgx7RFOkpBA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 09 Jun 2025 22:09:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-lPoK2AkT7vXgqITUdevQXiWlSLlQP8f1jgx7RFOkpBA="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/a3e6b500-84e2-4011-9672-09b82f5155d3.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\a3e6b500-84e2-4011-9672-09b82f5155d3.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5985"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 02 Jun 2025 23:27:14 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/a3e6b500-84e2-4011-9672-09b82f5155d3.z3xomgpqhi.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\a3e6b500-84e2-4011-9672-09b82f5155d3.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5985"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 02 Jun 2025 23:27:14 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "z3xomgpqhi"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/produtos/a3e6b500-84e2-4011-9672-09b82f5155d3.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/bca15bb8-cd6e-4b54-afc5-d9d981d9fa02.ju1qcvh9zb.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\bca15bb8-cd6e-4b54-afc5-d9d981d9fa02.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "289606"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"JbxwAXC2vcrzihkNTzrerxwt5Y9dFzgmQM28QO2MNCs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 09 Jun 2025 22:09:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ju1qcvh9zb"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/produtos/bca15bb8-cd6e-4b54-afc5-d9d981d9fa02.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-JbxwAXC2vcrzihkNTzrerxwt5Y9dFzgmQM28QO2MNCs="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/bca15bb8-cd6e-4b54-afc5-d9d981d9fa02.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\bca15bb8-cd6e-4b54-afc5-d9d981d9fa02.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "289606"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"JbxwAXC2vcrzihkNTzrerxwt5Y9dFzgmQM28QO2MNCs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 09 Jun 2025 22:09:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-JbxwAXC2vcrzihkNTzrerxwt5Y9dFzgmQM28QO2MNCs="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/bd3bf1db-a49c-4b51-88d6-70a28a34959f.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\bd3bf1db-a49c-4b51-88d6-70a28a34959f.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5985"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 04 Jun 2025 22:05:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/bd3bf1db-a49c-4b51-88d6-70a28a34959f.z3xomgpqhi.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\bd3bf1db-a49c-4b51-88d6-70a28a34959f.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5985"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 04 Jun 2025 22:05:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "z3xomgpqhi"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/produtos/bd3bf1db-a49c-4b51-88d6-70a28a34959f.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/c27a8961-11bc-4b65-af51-cf654e08ca6c.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\c27a8961-11bc-4b65-af51-cf654e08ca6c.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5985"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 04 Jun 2025 22:09:24 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/c27a8961-11bc-4b65-af51-cf654e08ca6c.z3xomgpqhi.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\c27a8961-11bc-4b65-af51-cf654e08ca6c.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5985"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 04 Jun 2025 22:09:24 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "z3xomgpqhi"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/produtos/c27a8961-11bc-4b65-af51-cf654e08ca6c.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/c6cd3cc8-3bd6-4731-b98c-42718b741a43.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\c6cd3cc8-3bd6-4731-b98c-42718b741a43.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5985"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 02 Jun 2025 23:30:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/c6cd3cc8-3bd6-4731-b98c-42718b741a43.z3xomgpqhi.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\c6cd3cc8-3bd6-4731-b98c-42718b741a43.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5985"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 02 Jun 2025 23:30:18 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "z3xomgpqhi"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/produtos/c6cd3cc8-3bd6-4731-b98c-42718b741a43.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/d457d953-c738-4e66-b1cc-8e05fe3b1534.gib8zw23da.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\d457d953-c738-4e66-b1cc-8e05fe3b1534.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8139"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"uLDGjpdGA7GulJ5zyBFfKG1e3pIBNTICf+aI6O7ABXk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 04 Jun 2025 22:24:20 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "gib8zw23da"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/produtos/d457d953-c738-4e66-b1cc-8e05fe3b1534.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-uLDGjpdGA7GulJ5zyBFfKG1e3pIBNTICf+aI6O7ABXk="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/d457d953-c738-4e66-b1cc-8e05fe3b1534.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\d457d953-c738-4e66-b1cc-8e05fe3b1534.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8139"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"uLDGjpdGA7GulJ5zyBFfKG1e3pIBNTICf+aI6O7ABXk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 04 Jun 2025 22:24:20 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-uLDGjpdGA7GulJ5zyBFfKG1e3pIBNTICf+aI6O7ABXk="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/e55b4c11-8eec-4c5a-950d-7c318cc44653.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\e55b4c11-8eec-4c5a-950d-7c318cc44653.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "260336"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"z2CMb8LGlwTgiiY68/uvKn27h1JkgCrsZQjgKzIdVn8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 04 Jun 2025 22:15:13 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-z2CMb8LGlwTgiiY68/uvKn27h1JkgCrsZQjgKzIdVn8="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/e55b4c11-8eec-4c5a-950d-7c318cc44653.tlul5rmd8y.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\e55b4c11-8eec-4c5a-950d-7c318cc44653.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "260336"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"z2CMb8LGlwTgiiY68/uvKn27h1JkgCrsZQjgKzIdVn8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 04 Jun 2025 22:15:13 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "tlul5rmd8y"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/produtos/e55b4c11-8eec-4c5a-950d-7c318cc44653.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-z2CMb8LGlwTgiiY68/uvKn27h1JkgCrsZQjgKzIdVn8="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/e9082c11-acd9-4531-8c73-c4cafad041ae.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\e9082c11-acd9-4531-8c73-c4cafad041ae.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5985"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 03 Jun 2025 01:20:05 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/e9082c11-acd9-4531-8c73-c4cafad041ae.z3xomgpqhi.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\e9082c11-acd9-4531-8c73-c4cafad041ae.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5985"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 03 Jun 2025 01:20:05 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "z3xomgpqhi"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/produtos/e9082c11-acd9-4531-8c73-c4cafad041ae.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/f5115756-5b9b-4c0c-bb22-667892ea491e.eea61hk9je.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\f5115756-5b9b-4c0c-bb22-667892ea491e.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "16588"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"2oBkEAwJut+se4zZrfvhNNp+xJgi7NtqJYkrklDtPyA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 10 Jun 2025 00:16:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "eea61hk9je"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/produtos/f5115756-5b9b-4c0c-bb22-667892ea491e.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-2oBkEAwJut+se4zZrfvhNNp+xJgi7NtqJYkrklDtPyA="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/f5115756-5b9b-4c0c-bb22-667892ea491e.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\f5115756-5b9b-4c0c-bb22-667892ea491e.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "16588"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"2oBkEAwJut+se4zZrfvhNNp+xJgi7NtqJYkrklDtPyA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 10 Jun 2025 00:16:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-2oBkEAwJut+se4zZrfvhNNp+xJgi7NtqJYkrklDtPyA="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/ffce52de-f1c3-4ca4-954a-7f9b50911d04.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\ffce52de-f1c3-4ca4-954a-7f9b50911d04.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5985"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 04 Jun 2025 22:10:42 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/produtos/ffce52de-f1c3-4ca4-954a-7f9b50911d04.z3xomgpqhi.png",
+      "AssetFile": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\wwwroot\\uploads\\produtos\\ffce52de-f1c3-4ca4-954a-7f9b50911d04.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5985"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 04 Jun 2025 22:10:42 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "z3xomgpqhi"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/produtos/ffce52de-f1c3-4ca4-954a-7f9b50911d04.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-YRyMO3HanxTFDAt34YykFl/EHiL+Vx6oqv/5YuLF6U0="
+        }
+      ]
     }
   ]
 }

@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\Backend_Vestetec_App.csproj": {}
+    "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\Backend_Vestetec_App.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\Backend_Vestetec_App.csproj": {
+    "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\Backend_Vestetec_App.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\Backend_Vestetec_App.csproj",
+        "projectUniqueName": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\Backend_Vestetec_App.csproj",
         "projectName": "Backend_Vestetec_App",
-        "projectPath": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\Backend_Vestetec_App.csproj",
-        "packagesPath": "C:\\Users\\Bernardo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\obj\\",
+        "projectPath": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\Backend_Vestetec_App.csproj",
+        "packagesPath": "D:\\home\\pedro_24209\\.nuget\\packages\\",
+        "outputPath": "D:\\home\\pedro_24209\\bernardo\\Backend_VestEtec\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Bernardo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "D:\\home\\pedro_24209\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -39,8 +43,9 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "direct"
-        }
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -110,7 +115,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.407/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

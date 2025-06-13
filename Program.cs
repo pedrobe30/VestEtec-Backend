@@ -19,7 +19,7 @@ var serverVersion = ServerVersion.Parse("10.4.32-mariadb");
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AloowAll", builder =>
+    options.AddPolicy("AlowAll", builder =>
     {
         builder.AllowAnyOrigin()
         .AllowAnyMethod()
@@ -59,10 +59,7 @@ builder.Services.AddControllers()
 
     });
 
-    builder.WebHost.ConfigureKestrel(options =>
-{
-    options.ListenAnyIP(5260); // Aceita em qualquer IP
-});
+
 
 
 
@@ -144,13 +141,13 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCors("AloowAll");
-
-app.MapControllers();
+app.UseCors("AlowAll");
 
 app.UseAuthentication();
 
 app.UseAuthorization();
+
+app.MapControllers();
 
 app.Run();
 

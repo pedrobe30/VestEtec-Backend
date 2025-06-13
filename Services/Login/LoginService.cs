@@ -119,15 +119,24 @@ namespace Alunos.Services
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_configuration["Jwt:SecretKey"]);
+            var issuer = _configuration["Jwt:Issuer"];
+            var audience = _configuration["Jwt:Audience"];
+
+            var claimsIdentity = new ClaimsIdentity(new[]
+            {
+        new Claim(ClaimTypes.NameIdentifier, aluno.IdAluno.ToString()),
+        new Claim(ClaimTypes.Email, aluno.EmailAlu),
+        new Claim(ClaimTypes.Name, aluno.NomeAlu),
+        // Opcional: adicionar JTI para identificar unicamente este token
+        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+    });
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new Claim[]
-                {
-                    new Claim(ClaimTypes.NameIdentifier, aluno.IdAluno.ToString()),
-                    new Claim(ClaimTypes.Email, aluno.EmailAlu),
-                    new Claim(ClaimTypes.Name, aluno.NomeAlu)
-                }),
+                Subject = claimsIdentity,
+                Issuer = issuer,
+                Audience = audience,
+                NotBefore = DateTime.UtcNow,
                 Expires = DateTime.UtcNow.AddHours(8),
                 SigningCredentials = new SigningCredentials(
                     new SymmetricSecurityKey(key),
