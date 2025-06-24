@@ -1,127 +1,183 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
 using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace Backend_Vestetec_App.DTOs
 {
     /// <summary>
-    /// DTO simplificado para criaÁ„o e atualizaÁ„o de produtos
-    /// Remove campos que s„o gerados automaticamente pelo sistema
+    /// DTO para representar tamanho e quantidade
+    /// </summary>
+    public class TamanhoQuantidadeDto
+    {
+        [Required(ErrorMessage = "O tamanho √© obrigat√≥rio")]
+        [StringLength(10, ErrorMessage = "O tamanho deve ter no m√°ximo 10 caracteres")]
+        public string Tamanho { get; set; } = string.Empty;
+
+        [Range(0, int.MaxValue, ErrorMessage = "A quantidade deve ser maior ou igual a zero")]
+        public int Quantidade { get; set; } = 0;
+    }
+
+    /// <summary>
+    /// DTO simplificado para cria√ß√£o de produtos
     /// </summary>
     public class ProdutoCreateDto
     {
-        [Required(ErrorMessage = "O preÁo È obrigatÛrio")]
-        [Range(0.01, double.MaxValue, ErrorMessage = "O preÁo deve ser maior que zero")]
+        [Required(ErrorMessage = "O pre√ßo √© obrigat√≥rio")]
+        [Range(0.01, double.MaxValue, ErrorMessage = "O pre√ßo deve ser maior que zero")]
         public decimal Preco { get; set; }
 
-        [Required(ErrorMessage = "A quantidade em estoque È obrigatÛria")]
-        [Range(0, int.MaxValue, ErrorMessage = "A quantidade deve ser maior ou igual a zero")]
-        public int QuantEstoque { get; set; }
-
-        [Required(ErrorMessage = "A categoria È obrigatÛria")]
+        [Required(ErrorMessage = "A categoria √© obrigat√≥ria")]
         public int IdCategoria { get; set; }
 
-        [Required(ErrorMessage = "O modelo È obrigatÛrio")]
+        [Required(ErrorMessage = "O modelo √© obrigat√≥rio")]
         public int IdModelo { get; set; }
 
-        [Required(ErrorMessage = "O Tecido È obrigatÛrio")]
-        public int? IdTecido { get; set; }
+        [Required(ErrorMessage = "O tecido √© obrigat√≥rio")]
+        public int IdTecido { get; set; }
 
-        // Campo de imagem para upload - o ˙nico campo de arquivo necess·rio
-        [Required(ErrorMessage = "A imagem È obrigatÛria")]
-        public IFormFile Imagem { get; set; }
+        [StringLength(255, ErrorMessage = "A descri√ß√£o deve ter no m√°ximo 255 caracteres")]
+        public string? Descricao { get; set; }
+
+        [Required(ErrorMessage = "A imagem √© obrigat√≥ria")]
+        public IFormFile Imagem { get; set; } = null!;
+
+        [Required(ErrorMessage = "Os tamanhos e quantidades s√£o obrigat√≥rios")]
+        public string TamanhosQuantidadesJson { get; set; } = string.Empty;
     }
 
     /// <summary>
-    /// DTO para atualizaÁ„o de produtos - permite alterar o status
+    /// DTO para atualiza√ß√£o de produtos
     /// </summary>
     public class ProdutoUpdateDto
     {
-        [Required(ErrorMessage = "O preÁo È obrigatÛrio")]
-        [Range(0.01, double.MaxValue, ErrorMessage = "O preÁo deve ser maior que zero")]
+        [Required(ErrorMessage = "O pre√ßo √© obrigat√≥rio")]
+        [Range(0.01, double.MaxValue, ErrorMessage = "O pre√ßo deve ser maior que zero")]
         public decimal Preco { get; set; }
 
-        [Required(ErrorMessage = "A quantidade em estoque È obrigatÛria")]
-        [Range(0, int.MaxValue, ErrorMessage = "A quantidade deve ser maior ou igual a zero")]
-        public int QuantEstoque { get; set; }
-
-        [Required(ErrorMessage = "A categoria È obrigatÛria")]
+        [Required(ErrorMessage = "A categoria √© obrigat√≥ria")]
         public int IdCategoria { get; set; }
 
-        [Required(ErrorMessage = "O modelo È obrigatÛrio")]
+        [Required(ErrorMessage = "O modelo √© obrigat√≥rio")]
         public int IdModelo { get; set; }
 
-        public int? IdTecido { get; set; }
+        [Required(ErrorMessage = "O tecido √© obrigat√≥rio")]
+        public int IdTecido { get; set; }
 
-        [Required(ErrorMessage = "O status È obrigatÛrio")]
-        [Range(1, 2, ErrorMessage = "Status deve ser 1 (DisponÌvel) ou 2 (IndisponÌvel)")]
+        [Required(ErrorMessage = "O status √© obrigat√≥rio")]
+        [Range(1, 2, ErrorMessage = "Status deve ser 1 (Dispon√≠vel) ou 2 (Indispon√≠vel)")]
         public int IdStatus { get; set; }
 
-        // Imagem È opcional na atualizaÁ„o - se n„o enviar, mantÈm a atual
+        [StringLength(255, ErrorMessage = "A descri√ß√£o deve ter no m√°ximo 255 caracteres")]
+        public string? Descricao { get; set; }
+
         public IFormFile? Imagem { get; set; }
+
+        [Required(ErrorMessage = "Os tamanhos e quantidades s√£o obrigat√≥rios")]
+        public string TamanhosQuantidadesJson { get; set; } = string.Empty;
     }
 
     /// <summary>
-    /// DTO para resposta - contÈm todos os dados do produto, incluindo nomes das referÍncias
-    /// Este DTO È usado quando retornamos dados para o cliente
+    /// DTO para resposta - cont√©m todos os dados do produto
     /// </summary>
     public class ProdutoResponseDto
     {
         public int IdProd { get; set; }
         public decimal Preco { get; set; }
-        public int QuantEstoque { get; set; }
         public int IdCategoria { get; set; }
         public int IdModelo { get; set; }
-        public int? IdTecido { get; set; }
+        public int IdTecido { get; set; }
         public int IdStatus { get; set; }
-
-        // URL da imagem - gerada automaticamente pelo sistema
+        public string? Descricao { get; set; }
         public string? ImgUrl { get; set; }
 
-        // Nomes para exibiÁ„o - facilita o trabalho do frontend
+        // Nomes para exibi√ß√£o
         public string? CategoriaNome { get; set; }
         public string? ModeloNome { get; set; }
         public string? TecidoNome { get; set; }
         public string? StatusNome { get; set; }
+
+        // Lista de tamanhos e quantidades para exibi√ß√£o
+        public List<TamanhoQuantidadeDto> TamanhosQuantidades { get; set; } = new List<TamanhoQuantidadeDto>();
     }
 
     /// <summary>
-    /// DTO principal - usado para entrada e saÌda de dados
+    /// DTO completo para comunica√ß√£o controller/service (cria√ß√£o)
+    /// </summary>
+    public class ProdutoCompletoDto
+    {
+        public decimal Preco { get; set; }
+        public int IdCategoria { get; set; }
+        public int IdModelo { get; set; }
+        public int IdTecido { get; set; }
+        public string? Descricao { get; set; }
+        public IFormFile Imagem { get; set; } = null!;
+        public List<TamanhoQuantidadeDto> TamanhosQuantidades { get; set; } = new();
+    }
+
+    /// <summary>
+    /// DTO completo para comunica√ß√£o controller/service (atualiza√ß√£o)
+    /// </summary>
+    public class ProdutoUpdateCompletoDto
+    {
+        public decimal Preco { get; set; }
+        public int IdCategoria { get; set; }
+        public int IdModelo { get; set; }
+        public int IdTecido { get; set; }
+        public int IdStatus { get; set; }
+        public string? Descricao { get; set; }
+        public IFormFile? Imagem { get; set; }
+        public List<TamanhoQuantidadeDto> TamanhosQuantidades { get; set; } = new();
+    }
+
+    /// <summary>
+    /// DTO principal - mantido para compatibilidade
     /// </summary>
     public class ProdutoDto
     {
-        // Campo auto-increment - n„o aparece no formul·rio de criaÁ„o
         public int IdProd { get; set; }
 
-        [Required(ErrorMessage = "O preÁo È obrigatÛrio")]
-        [Range(0.01, double.MaxValue, ErrorMessage = "O preÁo deve ser maior que zero")]
+        [Required(ErrorMessage = "O pre√ßo √© obrigat√≥rio")]
+        [Range(0.01, double.MaxValue, ErrorMessage = "O pre√ßo deve ser maior que zero")]
         public decimal Preco { get; set; }
 
-        [Required(ErrorMessage = "A quantidade em estoque È obrigatÛria")]
-        [Range(0, int.MaxValue, ErrorMessage = "A quantidade deve ser maior ou igual a zero")]
-        public int QuantEstoque { get; set; }
-
-        [Required(ErrorMessage = "A categoria È obrigatÛria")]
+        [Required(ErrorMessage = "A categoria √© obrigat√≥ria")]
         public int IdCategoria { get; set; }
 
-        [Required(ErrorMessage = "O modelo È obrigatÛrio")]
+        [Required(ErrorMessage = "O modelo √© obrigat√≥rio")]
         public int IdModelo { get; set; }
 
-        [Required(ErrorMessage = "O Tecido È obrigatÛrio")]
-        public int? IdTecido { get; set; }
+        [Required(ErrorMessage = "O tecido √© obrigat√≥rio")]
+        public int IdTecido { get; set; }
 
         public int IdStatus { get; set; }
-
-        // ImgUrl È gerada automaticamente pelo service
+        public string? Descricao { get; set; }
         public string? ImgUrl { get; set; }
 
-        // Campos auxiliares - preenchidos automaticamente pelo service baseado nos IDs
+        // Campos auxiliares
         public string? CategoriaNome { get; set; }
         public string? ModeloNome { get; set; }
         public string? TecidoNome { get; set; }
         public string? StatusNome { get; set; }
 
-        // Campo de imagem para upload - usado apenas na entrada (POST/PUT)
+        public List<TamanhoQuantidadeDto> TamanhosQuantidades { get; set; } = new List<TamanhoQuantidadeDto>();
+
+        public Dictionary<string, int> EstoquePorTamanho
+        {
+            get => TamanhosQuantidades?.ToDictionary(t => t.Tamanho, t => t.Quantidade) ?? new Dictionary<string, int>();
+            set
+            {
+                if (value != null)
+                {
+                    TamanhosQuantidades = value.Select(kv => new TamanhoQuantidadeDto
+                    {
+                        Tamanho = kv.Key,
+                        Quantidade = kv.Value
+                    }).ToList();
+                }
+            }
+        }
+
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public IFormFile? Imagem { get; set; }
     }

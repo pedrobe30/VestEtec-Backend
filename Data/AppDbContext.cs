@@ -42,11 +42,12 @@ public partial class AppDbContext : DbContext
     public virtual DbSet<Tecido> Tecidos { get; set; }
 
     public virtual DbSet<Teste> Testes { get; set; }
+    public virtual DbSet<Estoque> Estoques { get; set; }
 
-    public virtual DbSet<CodigoVerificacao> CodigosVerificacao {get; set;}
-   
+    public virtual DbSet<CodigoVerificacao> CodigosVerificacao { get; set; }
 
-   // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+
+    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     //    => optionsBuilder.UseMySql("server=localhost;database=controle_de_estoque_bd;user=root", Microsoft.EntityFrameworkCore.ServerVersion.Parse("10.4.32-mariadb"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -87,6 +88,8 @@ public partial class AppDbContext : DbContext
         {
             entity.HasKey(e => e.IdEncomenda).HasName("PRIMARY");
 
+            entity.Property(e => e.IdEncomenda).ValueGeneratedOnAdd();
+
             entity.HasOne(d => d.IdAlunoNavigation).WithMany(p => p.Encomenda)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fk_alunos_enco");
@@ -118,7 +121,7 @@ public partial class AppDbContext : DbContext
         {
             entity.HasKey(e => e.IdItem).HasName("PRIMARY");
 
-            entity.Property(e => e.IdItem).ValueGeneratedNever();
+            entity.Property(e => e.IdItem).ValueGeneratedOnAdd();
         });
 
         modelBuilder.Entity<Modelo>(entity =>
@@ -129,25 +132,67 @@ public partial class AppDbContext : DbContext
         });
 
         modelBuilder.Entity<Produto>(entity =>
-        {
-            entity.HasKey(e => e.IdProd).HasName("PRIMARY");
+            {
+                entity.ToTable("produto");
+                entity.HasKey(e => e.IdProd).HasName("PRIMARY");
 
-            entity.Property(e => e.IdProd).ValueGeneratedNever();
+                entity.Property(e => e.IdProd)  
+                      .HasColumnName("ID_prod")
+                      .ValueGeneratedOnAdd(); // mudar de ValueGeneratedNever para ValueGeneratedOnAdd
 
-            entity.HasOne(d => d.IdCategoriaNavigation).WithMany(p => p.Produtos)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_categoria");
+                entity.Property(e => e.Preco)
+                      .HasColumnName("preco")
+                      .HasPrecision(10, 2);
 
-            entity.HasOne(d => d.IdModeloNavigation).WithMany(p => p.Produtos)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_modelo");
+                entity.Property(e => e.IdCategoria)
+                      .HasColumnName("ID_categoria");
 
-            entity.HasOne(d => d.IdStatusNavigation).WithMany(p => p.Produtos)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("fk_status");
+                entity.Property(e => e.IdModelo)
+                      .HasColumnName("ID_modelo");
 
-            entity.HasOne(d => d.IdTecidoNavigation).WithMany(p => p.Produtos).HasConstraintName("fk_tecido");
-        });
+                entity.Property(e => e.IdTecido)
+                      .HasColumnName("ID_tecido");
+
+                entity.Property(e => e.IdStatus)
+                      .HasColumnName("ID_status");
+
+                entity.Property(e => e.ImgUrl)
+                      .HasColumnName("img_url")
+                      .HasMaxLength(255);
+
+                entity.Property(e => e.descricao)
+                      .HasColumnName("descricao")
+                      .HasMaxLength(255);
+
+                entity.HasOne(d => d.IdCategoriaNavigation)
+                      .WithMany(p => p.Produtos)
+                      .HasForeignKey(d => d.IdCategoria)
+                      .OnDelete(DeleteBehavior.ClientSetNull)
+                      .HasConstraintName("fk_categoria");
+
+                entity.HasOne(d => d.IdModeloNavigation)
+                      .WithMany(p => p.Produtos)
+                      .HasForeignKey(d => d.IdModelo)
+                      .OnDelete(DeleteBehavior.ClientSetNull)
+                      .HasConstraintName("fk_modelo");
+
+                entity.HasOne(d => d.IdStatusNavigation)
+                      .WithMany(p => p.Produtos)
+                      .HasForeignKey(d => d.IdStatus)
+                      .OnDelete(DeleteBehavior.ClientSetNull)
+                      .HasConstraintName("fk_status");
+
+                entity.HasOne(d => d.IdTecidoNavigation)
+                      .WithMany(p => p.Produtos)
+                      .HasForeignKey(d => d.IdTecido)
+                      .HasConstraintName("fk_tecido");
+
+                entity.HasMany(e => e.Estoque)
+                      .WithOne(e => e.IdProdutoNavigation)
+                      .HasForeignKey(e => e.IdProduto)
+                      .OnDelete(DeleteBehavior.Cascade)
+                      .HasConstraintName("fk_estoque_produto");
+            });
 
         modelBuilder.Entity<Status>(entity =>
         {
@@ -156,6 +201,33 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.IdStatus).ValueGeneratedNever();
         });
 
+        modelBuilder.Entity<Estoque>(entity =>
+            {
+                entity.ToTable("estoque");
+                entity.HasKey(e => e.IdEstoque).HasName("PRIMARY");
+
+                entity.Property(e => e.IdEstoque)
+                      .HasColumnName("id_estoque")
+                      .ValueGeneratedOnAdd(); // auto-increment
+
+                entity.Property(e => e.IdProduto)
+                      .HasColumnName("id_produto");
+
+                entity.Property(e => e.Tamanho)
+                      .HasColumnName("tamanho")
+                      .HasMaxLength(10)
+                      .IsRequired();
+
+                entity.Property(e => e.Quantidade)
+                      .HasColumnName("quantidade");
+
+                entity.HasOne(e => e.IdProdutoNavigation)
+                      .WithMany(p => p.Estoque)
+                      .HasForeignKey(e => e.IdProduto)
+                      .OnDelete(DeleteBehavior.Cascade)
+                      .HasConstraintName("fk_estoque_produto");
+            });
+
         modelBuilder.Entity<Tecido>(entity =>
         {
             entity.HasKey(e => e.IdTecido).HasName("PRIMARY");
@@ -163,13 +235,13 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.IdTecido).ValueGeneratedNever();
         });
 
-            modelBuilder.Entity<CodigoVerificacao>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PRIMARY");
-            entity.Property(e => e.Id).ValueGeneratedOnAdd();
-        });
+        modelBuilder.Entity<CodigoVerificacao>(entity =>
+    {
+        entity.HasKey(e => e.Id).HasName("PRIMARY");
+        entity.Property(e => e.Id).ValueGeneratedOnAdd();
+    });
 
-        
+
 
 
 

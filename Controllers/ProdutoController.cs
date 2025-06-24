@@ -1,8 +1,14 @@
-// Controllers/ProdutoController.cs
+// Controllers/ProdutoController.cs - CORRIGIDO E COM LOGS DE DEPURAÇÃO
+
 using Backend_Vestetec_App.DTOs;
 using Backend_Vestetec_App.Interfaces;
 using Backend_Vestetec_App.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging; // NECESSÁRIO PARA O LOGGER
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace Backend_Vestetec_App.Controllers
 {
@@ -11,113 +17,225 @@ namespace Backend_Vestetec_App.Controllers
     public class ProdutoController : ControllerBase
     {
         private readonly IProdutoService _produtoService;
+        private readonly ILogger<ProdutoController> _logger; // CAMPO PARA O LOGGER
 
-        public ProdutoController(IProdutoService produtoService)
+        // CONSTRUTOR ATUALIZADO PARA INJETAR O LOGGER
+        public ProdutoController(IProdutoService produtoService, ILogger<ProdutoController> logger)
         {
             _produtoService = produtoService;
+            _logger = logger;
         }
 
+        /// <summary>
+        /// Cria um novo produto com tamanhos e quantidades
+        /// </summary>
+        [HttpPost]
+        [Consumes("multipart/form-data")]
+        public async Task<ActionResult<ResponseModel<ProdutoResponseDto>>> AddProdutoCompleto([FromForm] ProdutoCreateDto produtoDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new ResponseModel<ProdutoResponseDto>
+                {
+                    status = false,
+                    Mensagem = string.Join("; ", ModelState.Values
+                        .SelectMany(v => v.Errors)
+                        .Select(e => e.ErrorMessage))
+                });
+            }
+
+            if (produtoDto.Preco <= 0)
+            {
+                return BadRequest(new ResponseModel<ProdutoResponseDto> { status = false, Mensagem = "O preço deve ser maior que zero." });
+            }
+
+            if (string.IsNullOrWhiteSpace(produtoDto.TamanhosQuantidadesJson))
+            {
+                return BadRequest(new ResponseModel<ProdutoResponseDto> { status = false, Mensagem = "Os tamanhos e quantidades são obrigatórios." });
+            }
+
+            List<TamanhoQuantidadeDto> tamanhosQuantidades;
+            try
+            {
+                var jsonLimpo = produtoDto.TamanhosQuantidadesJson.Trim();
+
+                // ETAPA DE DEPURAÇÃO 1: Logar a string recebida
+                _logger.LogInformation("--> JSON Recebido para CRIAR produto: {JsonString}", jsonLimpo);
+
+                // ETAPA DE DEPURAÇÃO 2: Remover aspas "embrulhadoras", se existirem
+                if (jsonLimpo.StartsWith("\"") && jsonLimpo.EndsWith("\""))
+                {
+                    jsonLimpo = jsonLimpo.Substring(1, jsonLimpo.Length - 2);
+                    _logger.LogInformation("--> JSON Após limpeza de aspas: {JsonString}", jsonLimpo);
+                }
+
+                var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+                tamanhosQuantidades = JsonSerializer.Deserialize<List<TamanhoQuantidadeDto>>(jsonLimpo, options);
+            }
+            catch (JsonException ex)
+            {
+                _logger.LogError(ex, "Falha no parsing do JSON ao criar produto.");
+                return BadRequest(new ResponseModel<ProdutoResponseDto>
+                {
+                    status = false,
+                    Mensagem = $"JSON inválido: {ex.Message}. Formato esperado: [{{'tamanho':'P','quantidade':10}}]"
+                });
+            }
+
+            if (tamanhosQuantidades == null || !tamanhosQuantidades.Any())
+            {
+                return BadRequest(new ResponseModel<ProdutoResponseDto> { status = false, Mensagem = "Lista de tamanhos está vazia após parsing." });
+            }
+
+            foreach (var item in tamanhosQuantidades)
+            {
+                if (string.IsNullOrWhiteSpace(item.Tamanho))
+                {
+                    return BadRequest(new ResponseModel<ProdutoResponseDto> { status = false, Mensagem = "Todos os tamanhos devem ser preenchidos." });
+                }
+                if (item.Quantidade < 0)
+                {
+                    return BadRequest(new ResponseModel<ProdutoResponseDto> { status = false, Mensagem = "As quantidades não podem ser negativas." });
+                }
+            }
+
+            var produtoCompleto = new ProdutoCompletoDto
+            {
+                Preco = produtoDto.Preco,
+                IdCategoria = produtoDto.IdCategoria,
+                IdModelo = produtoDto.IdModelo,
+                IdTecido = produtoDto.IdTecido,
+                Descricao = produtoDto.Descricao,
+                Imagem = produtoDto.Imagem,
+                TamanhosQuantidades = tamanhosQuantidades
+            };
+
+            var response = await _produtoService.AddProdutoCompletoAsync(produtoCompleto);
+
+            if (!response.status || response.Dados == null)
+            {
+                return BadRequest(response);
+            }
+
+            return CreatedAtAction(nameof(GetProdutoById), new { id = response.Dados.IdProd }, response);
+        }
+
+        /// <summary>
+        /// Atualiza um produto existente
+        /// </summary>
+        [HttpPut("{id}")]
+        [Consumes("multipart/form-data")]
+        public async Task<ActionResult<ResponseModel<ProdutoResponseDto>>> UpdateProduto(int id, [FromForm] ProdutoUpdateDto produtoDto)
+        {
+            if (id <= 0)
+            {
+                return BadRequest(new ResponseModel<ProdutoResponseDto> { status = false, Mensagem = "ID do produto deve ser maior que zero." });
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(new ResponseModel<ProdutoResponseDto>
+                {
+                    status = false,
+                    Mensagem = string.Join("; ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage))
+                });
+            }
+
+            List<TamanhoQuantidadeDto> tamanhosQuantidades;
+            try
+            {
+                var jsonLimpo = produtoDto.TamanhosQuantidadesJson.Trim();
+
+                // ETAPA DE DEPURAÇÃO 1: Logar a string recebida
+                _logger.LogInformation("--> JSON Recebido para ATUALIZAR produto: {JsonString}", jsonLimpo);
+
+                // ETAPA DE DEPURAÇÃO 2: Remover aspas "embrulhadoras", se existirem
+                if (jsonLimpo.StartsWith("\"") && jsonLimpo.EndsWith("\""))
+                {
+                    jsonLimpo = jsonLimpo.Substring(1, jsonLimpo.Length - 2);
+                    _logger.LogInformation("--> JSON Após limpeza de aspas: {JsonString}", jsonLimpo);
+                }
+
+                var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+                tamanhosQuantidades = JsonSerializer.Deserialize<List<TamanhoQuantidadeDto>>(jsonLimpo, options);
+            }
+            catch (JsonException ex)
+            {
+                _logger.LogError(ex, "Falha no parsing do JSON ao atualizar produto.");
+                return BadRequest(new ResponseModel<ProdutoResponseDto> { status = false, Mensagem = $"JSON inválido: {ex.Message}" });
+            }
+
+            if (tamanhosQuantidades == null || !tamanhosQuantidades.Any())
+            {
+                return BadRequest(new ResponseModel<ProdutoResponseDto> { status = false, Mensagem = "Lista de tamanhos está vazia após parsing." });
+            }
+
+            var produtoCompleto = new ProdutoUpdateCompletoDto
+            {
+                Preco = produtoDto.Preco,
+                IdCategoria = produtoDto.IdCategoria,
+                IdModelo = produtoDto.IdModelo,
+                IdTecido = produtoDto.IdTecido,
+                IdStatus = produtoDto.IdStatus,
+                Descricao = produtoDto.Descricao,
+                Imagem = produtoDto.Imagem,
+                TamanhosQuantidades = tamanhosQuantidades
+            };
+
+            var response = await _produtoService.UpdateProdutoAsync(id, produtoCompleto);
+            return response.status ? Ok(response) : BadRequest(response);
+        }
+
+        /// <summary>
+        /// Busca todos os produtos
+        /// </summary>
         [HttpGet]
-        public async Task<ActionResult<ResponseModel<List<ProdutoDto>>>> GetAllProdutos()
+        public async Task<ActionResult<ResponseModel<List<ProdutoResponseDto>>>> GetAllProdutos()
         {
             var response = await _produtoService.GetAllProdutosAsync();
             return response.status ? Ok(response) : BadRequest(response);
         }
 
+        /// <summary>
+        /// Busca produto por ID
+        /// </summary>
         [HttpGet("{id}")]
-        public async Task<ActionResult<ResponseModel<ProdutoDto>>> GetProdutoById(int id)
+        public async Task<ActionResult<ResponseModel<ProdutoResponseDto>>> GetProdutoById(int id)
         {
+            if (id <= 0)
+            {
+                return BadRequest(new ResponseModel<ProdutoResponseDto> { status = false, Mensagem = "ID do produto deve ser maior que zero." });
+            }
             var response = await _produtoService.GetProdutoByIdAsync(id);
             return response.status ? Ok(response) : NotFound(response);
         }
 
+        /// <summary>
+        /// Busca produtos por categoria
+        /// </summary>
         [HttpGet("categoria/{categoriaId}")]
-        public async Task<ActionResult<ResponseModel<List<ProdutoDto>>>> GetProdutosByCategoria(int categoriaId)
+        public async Task<ActionResult<ResponseModel<List<ProdutoResponseDto>>>> GetProdutosByCategoria(int categoriaId)
         {
             if (categoriaId <= 0)
             {
-                return BadRequest(new ResponseModel<List<ProdutoDto>>
-                {
-                    status = false,
-                    Mensagem = "ID da categoria deve ser maior que zero",
-                    Dados = new List<ProdutoDto>()
-                });
+                return BadRequest(new ResponseModel<List<ProdutoResponseDto>> { status = false, Mensagem = "ID da categoria deve ser maior que zero." });
             }
-
-            // Call the service method that already exists in your ProdutoService
             var response = await _produtoService.GetProdutosByCategoriaAsync(categoriaId);
-
-            if (response.status)
-            {
-                return Ok(response);
-            }
-
-            // Return the response even if no products found (it's not necessarily an error)
-            return Ok(response);
-        }
-
-        [HttpPost("AddProduto")]
-        [Consumes("multipart/form-data")]
-        public async Task<ActionResult<ResponseModel<ProdutoDto>>> AddProdutoCompleto([FromForm] ProdutoDto produtoDto)
-        {
-            if (!ModelState.IsValid)
-            {
-                var errors = ModelState
-                    .Where(x => x.Value.Errors.Count > 0)
-                    .Select(x => new { Field = x.Key, Errors = x.Value.Errors.Select(e => e.ErrorMessage) })
-                    .ToList();
-
-                return BadRequest(new ResponseModel<ProdutoDto>
-                {
-                    status = false,
-                    Mensagem = $"Dados inválidos: {string.Join("; ", errors.SelectMany(e => e.Errors))}"
-                });
-            }
-
-            var response = await _produtoService.AddProdutoCompletoAsync(produtoDto);
-
-            if (response.status)
-            {
-                // Se o produto foi criado com sucesso, retornamos status 201 (Created)
-                return CreatedAtAction(
-                    nameof(GetProdutoById),
-                    new { id = response.Dados.IdProd },
-                    response
-                );
-            }
-
-            return BadRequest(response);
-        }
-
-        [HttpPut("{id}")]
-        [Consumes("multipart/form-data")]
-        public async Task<ActionResult<ResponseModel<ProdutoDto>>> UpdateProdutoComImagem(
-            int id,
-            [FromForm] ProdutoDto produtoDto)
-        {
-            if (!ModelState.IsValid)
-            {
-                var errors = ModelState
-                    .Where(x => x.Value.Errors.Count > 0)
-                    .Select(x => new { Field = x.Key, Errors = x.Value.Errors.Select(e => e.ErrorMessage) })
-                    .ToList();
-
-                return BadRequest(new ResponseModel<ProdutoDto>
-                {
-                    status = false,
-                    Mensagem = $"Dados inválidos: {string.Join("; ", errors.SelectMany(e => e.Errors))}"
-                });
-            }
-
-            var response = await _produtoService.UpdateProdutoAsync(id, produtoDto);
             return response.status ? Ok(response) : BadRequest(response);
         }
 
+        /// <summary>
+        /// Deleta um produto
+        /// </summary>
         [HttpDelete("{id}")]
         public async Task<ActionResult<ResponseModel<bool>>> DeleteProduto(int id)
         {
+            if (id <= 0)
+            {
+                return BadRequest(new ResponseModel<bool> { status = false, Mensagem = "ID do produto deve ser maior que zero.", Dados = false });
+            }
             var response = await _produtoService.DeleteProdutoAsync(id);
-            return response.status ? Ok(response) : NotFound(response);
+            return response.status ? Ok(response) : BadRequest(response);
         }
     }
 }

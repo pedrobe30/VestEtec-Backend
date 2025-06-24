@@ -105,7 +105,6 @@ C:\Users\Bernardo\Controle_de_Estoque\Projeto-App\Backend_Vestetec_App\obj\Debug
 C:\Users\Bernardo\Controle_de_Estoque\Projeto-App\Backend_Vestetec_App\obj\Debug\net8.0\ref\Backend_Vestetec_App.dll
 C:\Users\Bernardo\Controle_de_Estoque\Projeto-App\Backend_Vestetec_App\bin\Debug\net8.0\BCrypt.Net-Next.dll
 C:\Users\Bernardo\Controle_de_Estoque\Projeto-App\Backend_Vestetec_App\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-C:\Users\Bernardo\Controle_de_Estoque\Projeto-App\Backend_Vestetec_App\bin\Debug\net8.0\Microsoft.Bcl.Memory.dll
 C:\Users\Bernardo\Controle_de_Estoque\Projeto-App\Backend_Vestetec_App\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
 C:\Users\Bernardo\Controle_de_Estoque\Projeto-App\Backend_Vestetec_App\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\Users\Bernardo\Controle_de_Estoque\Projeto-App\Backend_Vestetec_App\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll

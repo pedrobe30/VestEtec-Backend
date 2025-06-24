@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Models/Itensencomendado.cs
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 namespace Backend_Vestetec_App.Models;
 
 [Table("itensencomendados")]
+[Index("IdEncomenda", Name = "fk_encomenda_item")]
+[Index("IdProduto", Name = "fk_produto_item")]
 public partial class Itensencomendado
 {
     [Key]
@@ -19,10 +23,20 @@ public partial class Itensencomendado
     [Column("id_produto", TypeName = "int(11)")]
     public int IdProduto { get; set; }
 
-    [Column("quantidade", TypeName = "int(11)")]
+    [Column("quantidade_encomendado", TypeName = "int(11)")]
     public int Quantidade { get; set; }
 
-    [Column("preco_uni")]
-    [Precision(10, 2)]
-    public decimal PrecoUni { get; set; }
+    [ForeignKey("IdEncomenda")]
+    [InverseProperty("Itensencomendados")]
+    public virtual Encomenda IdEncomendaNavigation { get; set; } = null!;
+
+    [ForeignKey("IdProduto")]
+    [InverseProperty("Itensencomendados")]
+    public virtual Produto IdProdutoNavigation { get; set; } = null!;
+
+    // CORREÇÃO: Propriedade Tamanho adicionada para armazenar o tamanho do item encomendado.
+    [Required]
+    [Column("tamanho")]
+    [StringLength(10)]
+    public string Tamanho { get; set; }
 }

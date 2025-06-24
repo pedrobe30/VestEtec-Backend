@@ -29,6 +29,14 @@ public partial class Admin
     [Column("id_Empresa", TypeName = "int(11)")]
     public int IdEmpresa { get; set; }
 
+    /// <summary>
+    /// Código estático para validação de cadastro de administrador (fixo: "0309").
+    /// </summary>
+    [Column("codigo_preciso")]
+    [Required]
+    [StringLength(10)]
+    public string CodigoPreciso { get; set; } = "0309";
+
     [InverseProperty("IdAdmNavigation")]
     public virtual ICollection<HistoricoEstoque> HistoricoEstoques { get; set; } = new List<HistoricoEstoque>();
 

@@ -1,7 +1,13 @@
+// Services/ProdutoService.cs
 using Backend_Vestetec_App.DTOs;
 using Backend_Vestetec_App.Interfaces;
 using Backend_Vestetec_App.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Backend_Vestetec_App.Services
 {
@@ -10,9 +16,8 @@ namespace Backend_Vestetec_App.Services
         private readonly AppDbContext _context;
         private readonly IImageService _imageService;
         private readonly ILogger<ProdutoService> _logger;
-
-        // Constante para o status padrão - torna o código mais legível e manutenível
         private const int STATUS_DISPONIVEL = 1;
+        private const int STATUS_INDISPONIVEL = 2;
 
         public ProdutoService(AppDbContext context, IImageService imageService, ILogger<ProdutoService> logger)
         {
@@ -21,10 +26,9 @@ namespace Backend_Vestetec_App.Services
             _logger = logger;
         }
 
-        public async Task<ResponseModel<List<ProdutoDto>>> GetAllProdutosAsync()
+        public async Task<ResponseModel<List<ProdutoResponseDto>>> GetAllProdutosAsync()
         {
-            var response = new ResponseModel<List<ProdutoDto>>();
-
+            var response = new ResponseModel<List<ProdutoResponseDto>>();
             try
             {
                 var produtos = await _context.Produtos
@@ -32,40 +36,26 @@ namespace Backend_Vestetec_App.Services
                     .Include(p => p.IdModeloNavigation)
                     .Include(p => p.IdTecidoNavigation)
                     .Include(p => p.IdStatusNavigation)
-                    .Select(p => new ProdutoDto
-                    {
-                        IdProd = p.IdProd,
-                        Preco = p.Preco,
-                        QuantEstoque = p.QuantEstoque,
-                        IdCategoria = p.IdCategoria,
-                        IdModelo = p.IdModelo,
-                        IdTecido = p.IdTecido,
-                        IdStatus = p.IdStatus,
-                        ImgUrl = p.ImgUrl,
-                        CategoriaNome = p.IdCategoriaNavigation.Categoria1,
-                        ModeloNome = p.IdModeloNavigation.Modelo1,
-                        TecidoNome = p.IdTecido.HasValue ? p.IdTecidoNavigation.Tipo : null,
-                        StatusNome = p.IdStatusNavigation.Descricao
-                    })
+                    .Include(p => p.Estoque)
+                    .AsNoTracking()
                     .ToListAsync();
 
-                response.Dados = produtos;
-                response.Mensagem = "Produtos recuperados com sucesso";
+                response.Dados = produtos.Select(CreateProdutoResponseDto).ToList();
+                response.Mensagem = "Produtos recuperados com sucesso.";
+                response.status = true;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Erro ao recuperar produtos");
+                _logger.LogError(ex, "Erro ao recuperar todos os produtos.");
                 response.status = false;
-                response.Mensagem = $"Erro ao recuperar produtos: {ex.Message}";
+                response.Mensagem = "Erro interno ao buscar produtos.";
             }
-
             return response;
         }
 
-        public async Task<ResponseModel<ProdutoDto>> GetProdutoByIdAsync(int id)
+        public async Task<ResponseModel<ProdutoResponseDto>> GetProdutoByIdAsync(int id)
         {
-            var response = new ResponseModel<ProdutoDto>();
-
+            var response = new ResponseModel<ProdutoResponseDto>();
             try
             {
                 var produto = await _context.Produtos
@@ -73,6 +63,8 @@ namespace Backend_Vestetec_App.Services
                     .Include(p => p.IdModeloNavigation)
                     .Include(p => p.IdTecidoNavigation)
                     .Include(p => p.IdStatusNavigation)
+                    .Include(p => p.Estoque)
+                    .AsNoTracking()
                     .FirstOrDefaultAsync(p => p.IdProd == id);
 
                 if (produto == null)
@@ -82,348 +74,373 @@ namespace Backend_Vestetec_App.Services
                     return response;
                 }
 
-                response.Dados = CreateProdutoDto(produto);
-                response.Mensagem = "Produto recuperado com sucesso";
+                response.Dados = CreateProdutoResponseDto(produto);
+                response.status = true;
+                response.Mensagem = "Produto recuperado com sucesso.";
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Erro ao recuperar produto com ID {Id}", id);
+                _logger.LogError(ex, "Erro ao recuperar produto por ID {ProdutoId}", id);
                 response.status = false;
-                response.Mensagem = $"Erro ao recuperar produto: {ex.Message}";
+                response.Mensagem = "Erro interno ao buscar o produto.";
             }
-
             return response;
         }
 
-        public async Task<ResponseModel<List<ProdutoDto>>> GetProdutosByCategoriaAsync(int categoriaId)
+        public async Task<ResponseModel<List<ProdutoResponseDto>>> GetProdutosByCategoriaAsync(int categoriaId)
         {
-            var response = new ResponseModel<List<ProdutoDto>>();
-
+            var response = new ResponseModel<List<ProdutoResponseDto>>();
             try
             {
-                // Verificar se a categoria existe
-                var categoriaExists = await _context.Categorias.AnyAsync(c => c.IdCategoria == categoriaId);
-
-                if (!categoriaExists)
-                {
-                    response.status = false;
-                    response.Mensagem = "Categoria não encontrada";
-                    return response;
-                }
-
-                // Buscar produtos da categoria
                 var produtos = await _context.Produtos
+                    .Where(p => p.IdCategoria == categoriaId)
                     .Include(p => p.IdCategoriaNavigation)
                     .Include(p => p.IdModeloNavigation)
                     .Include(p => p.IdTecidoNavigation)
                     .Include(p => p.IdStatusNavigation)
-                    .Where(p => p.IdCategoria == categoriaId)
-                    .Select(p => new ProdutoDto
-                    {
-                        IdProd = p.IdProd,
-                        Preco = p.Preco,
-                        QuantEstoque = p.QuantEstoque,
-                        IdCategoria = p.IdCategoria,
-                        IdModelo = p.IdModelo,
-                        IdTecido = p.IdTecido,
-                        IdStatus = p.IdStatus,
-                        ImgUrl = p.ImgUrl,
-                        CategoriaNome = p.IdCategoriaNavigation.Categoria1,
-                        ModeloNome = p.IdModeloNavigation.Modelo1,
-                        TecidoNome = p.IdTecido.HasValue ? p.IdTecidoNavigation.Tipo : null,
-                        StatusNome = p.IdStatusNavigation.Descricao
-                    })
+                    .Include(p => p.Estoque)
+                    .AsNoTracking()
                     .ToListAsync();
 
-                response.Dados = produtos;
-                response.Mensagem = produtos.Any()
-                    ? $"Produtos da categoria {categoriaId} recuperados com sucesso"
-                    : $"Nenhum produto encontrado para a categoria {categoriaId}";
+                response.Dados = produtos.Select(CreateProdutoResponseDto).ToList();
+                response.status = true;
+                response.Mensagem = "Produtos recuperados com sucesso.";
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Erro ao recuperar produtos da categoria {CategoriaId}", categoriaId);
+                _logger.LogError(ex, "Erro ao buscar produtos pela categoria {CategoriaId}", categoriaId);
                 response.status = false;
-                response.Mensagem = $"Erro ao recuperar produtos por categoria: {ex.Message}";
+                response.Mensagem = "Erro interno ao buscar produtos por categoria.";
             }
-
             return response;
         }
 
-        public async Task<ResponseModel<ProdutoDto>> AddProdutoCompletoAsync(ProdutoDto produtoDto)
+        public async Task<ResponseModel<ProdutoResponseDto>> AddProdutoCompletoAsync(ProdutoCompletoDto produtoDto)
         {
-            var response = new ResponseModel<ProdutoDto>();
+            var response = new ResponseModel<ProdutoResponseDto>();
 
+            // Validações iniciais...
+            if (produtoDto.Imagem == null || !_imageService.IsValidImageFile(produtoDto.Imagem))
+            {
+                response.status = false;
+                response.Mensagem = "Imagem é obrigatória e deve ser um formato válido.";
+                return response;
+            }
+            if (!await ValidarReferenciasAsync(produtoDto.IdCategoria, produtoDto.IdModelo, produtoDto.IdTecido))
+            {
+                response.status = false;
+                response.Mensagem = "Uma ou mais referências (categoria, modelo, tecido) não foram encontradas.";
+                return response;
+            }
+
+            string? imagePath = null;
+            using var transaction = await _context.Database.BeginTransactionAsync();
             try
             {
-                _logger.LogInformation("Iniciando adição de produto");
+                // Salvar imagem
+                imagePath = await _imageService.SaveImageAsync(produtoDto.Imagem);
 
-                // Validar a imagem primeiro
-                if (produtoDto.Imagem == null)
-                {
-                    response.status = false;
-                    response.Mensagem = "Imagem é obrigatória";
-                    return response;
-                }
-
-                if (!_imageService.IsValidImageFile(produtoDto.Imagem))
-                {
-                    response.status = false;
-                    response.Mensagem = "Arquivo de imagem inválido. Permitidos: JPG, JPEG, PNG, GIF, BMP, WEBP (máximo 5MB)";
-                    return response;
-                }
-
-                // Validar se as referências existem no banco
-                var validationResult = await ValidateReferencesAsync(
-                    produtoDto.IdCategoria,
-                    produtoDto.IdModelo,
-                    produtoDto.IdTecido
-                );
-
-                if (!validationResult.IsValid)
-                {
-                    response.status = false;
-                    response.Mensagem = validationResult.ErrorMessage;
-                    return response;
-                }
-
-                // Salvar a imagem
-                string imagePath;
-                try
-                {
-                    _logger.LogInformation("Salvando imagem do produto");
-                    imagePath = await _imageService.SaveImageAsync(produtoDto.Imagem);
-                    _logger.LogInformation($"Imagem salva em: {imagePath}");
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex, "Erro ao salvar imagem");
-                    response.status = false;
-                    response.Mensagem = $"Erro ao salvar imagem: {ex.Message}";
-                    return response;
-                }
-
-                // Criar o novo produto
+                // 1) Criar e inserir produto
                 var novoProduto = new Produto
                 {
                     Preco = produtoDto.Preco,
-                    QuantEstoque = produtoDto.QuantEstoque,
                     IdCategoria = produtoDto.IdCategoria,
                     IdModelo = produtoDto.IdModelo,
                     IdTecido = produtoDto.IdTecido,
                     IdStatus = STATUS_DISPONIVEL,
-                    ImgUrl = imagePath
+                    ImgUrl = imagePath,
+                    descricao = produtoDto.Descricao
                 };
-
                 _context.Produtos.Add(novoProduto);
                 await _context.SaveChangesAsync();
 
-                _logger.LogInformation($"Produto criado com ID: {novoProduto.IdProd}");
-
-                // Diagnóstico para entender o problema
-                var diagnostico = await DiagnosticarRelacionamentos(novoProduto.IdProd);
-                _logger.LogInformation($"Diagnóstico: {diagnostico}");
-
-                // Tentar recarregar o produto com retry e fallback
-                ProdutoDto produtoRetorno = null;
-
-                try
+                // Log do ID gerado
+                _logger.LogInformation("Produto criado com ID: {ProdutoId}", novoProduto.IdProd);
+                if (novoProduto.IdProd <= 0)
                 {
-                    // Primeira tentativa: recarregar com todas as propriedades de navegação
-                    var produtoCompleto = await _context.Produtos
-                        .Include(p => p.IdCategoriaNavigation)
-                        .Include(p => p.IdModeloNavigation)
-                        .Include(p => p.IdTecidoNavigation)
-                        .Include(p => p.IdStatusNavigation)
-                        .FirstOrDefaultAsync(p => p.IdProd == novoProduto.IdProd);
+                    throw new InvalidOperationException("ID do produto não foi gerado corretamente.");
+                }
 
-                    if (produtoCompleto != null)
+                _logger.LogInformation("Generated Produto.IdProd = {IdProd}", novoProduto.IdProd);
+                if (novoProduto.IdProd <= 0)
+                    throw new InvalidOperationException("ID do produto não foi gerado corretamente.");
+
+                // 2) Inserir estoques
+                if (produtoDto.TamanhosQuantidades != null && produtoDto.TamanhosQuantidades.Any())
+                {
+                    var tamanhosValidos = produtoDto.TamanhosQuantidades
+                        .Where(tq => !string.IsNullOrWhiteSpace(tq.Tamanho))
+                        .ToList();
+
+                    if (tamanhosValidos.Any())
                     {
-                        produtoRetorno = CreateProdutoDto(produtoCompleto);
-                        _logger.LogInformation("Produto recarregado com sucesso usando Include");
-                    }
-                    else
-                    {
-                        _logger.LogWarning("Produto não encontrado com Include, tentando abordagem manual");
+                        var estoques = tamanhosValidos
+                            .Select(tq => new Estoque
+                            {
+                                IdProduto = novoProduto.IdProd,
+                                Tamanho = tq.Tamanho.Trim().ToUpper(),
+                                Quantidade = Math.Max(0, tq.Quantidade)
+                            })
+                            .GroupBy(e => e.Tamanho)
+                            .Select(g => new Estoque
+                            {
+                                IdProduto = novoProduto.IdProd,
+                                Tamanho = g.Key,
+                                Quantidade = g.Sum(e => e.Quantidade)
+                            })
+                            .ToList();
 
-                        // Fallback: buscar o produto básico e as referências separadamente
-                        var produtoBasico = await _context.Produtos.FindAsync(novoProduto.IdProd);
-
-                        if (produtoBasico == null)
+                        foreach (var est in estoques)
                         {
-                            _logger.LogError($"Produto com ID {novoProduto.IdProd} não encontrado no banco após criação");
-                            response.status = false;
-                            response.Mensagem = "Erro crítico: produto não encontrado após criação";
-                            return response;
+                            _logger.LogInformation("Inserindo Estoque: ProdutoID={ProdutoId}, Tamanho='{Tamanho}', Quantidade={Quantidade}",
+                                novoProduto.IdProd, est.Tamanho, est.Quantidade);
                         }
 
-                        // Buscar as referências manualmente
-                        var categoria = await _context.Categorias.FindAsync(produtoBasico.IdCategoria);
-                        var modelo = await _context.Modelos.FindAsync(produtoBasico.IdModelo);
-                        var tecido = produtoBasico.IdTecido.HasValue ?
-                            await _context.Tecidos.FindAsync(produtoBasico.IdTecido.Value) : null;
-                        var status = await _context.Statuses.FindAsync(produtoBasico.IdStatus);
-
-                        // Criar o DTO manualmente
-                        produtoRetorno = new ProdutoDto
+                        try
                         {
-                            IdProd = produtoBasico.IdProd,
-                            Preco = produtoBasico.Preco,
-                            QuantEstoque = produtoBasico.QuantEstoque,
-                            IdCategoria = produtoBasico.IdCategoria,
-                            IdModelo = produtoBasico.IdModelo,
-                            IdTecido = produtoBasico.IdTecido,
-                            IdStatus = produtoBasico.IdStatus,
-                            ImgUrl = produtoBasico.ImgUrl,
-                            CategoriaNome = categoria?.Categoria1,
-                            ModeloNome = modelo?.Modelo1,
-                            TecidoNome = tecido?.Tipo,
-                            StatusNome = status?.Descricao
-                        };
-
-                        _logger.LogInformation("Produto criado usando busca manual das referências");
+                            await _context.Estoques.AddRangeAsync(estoques);
+                            await _context.SaveChangesAsync();
+                            _logger.LogInformation("Estoques inseridos com sucesso para ProdutoID={ProdutoId}", novoProduto.IdProd);
+                        }
+                        catch (Exception estEx)
+                        {
+                            var fkMsg = estEx.InnerException?.Message ?? estEx.Message;
+                            _logger.LogError(estEx, "Erro ao salvar estoque para ProdutoID={ProdutoId}. {Msg}", novoProduto.IdProd, fkMsg);
+                            throw new InvalidOperationException($"Erro ao salvar estoque: {fkMsg}");
+                        }
                     }
                 }
-                catch (Exception ex)
-                {
-                    _logger.LogError(ex, "Erro ao recarregar produto após criação");
 
-                    // Último fallback: retornar dados básicos do produto criado
-                    produtoRetorno = new ProdutoDto
-                    {
-                        IdProd = novoProduto.IdProd,
-                        Preco = novoProduto.Preco,
-                        QuantEstoque = novoProduto.QuantEstoque,
-                        IdCategoria = novoProduto.IdCategoria,
-                        IdModelo = novoProduto.IdModelo,
-                        IdTecido = novoProduto.IdTecido,
-                        IdStatus = novoProduto.IdStatus,
-                        ImgUrl = novoProduto.ImgUrl,
-                        // Nomes das referências ficarão null, mas o produto foi criado
-                        CategoriaNome = null,
-                        ModeloNome = null,
-                        TecidoNome = null,
-                        StatusNome = null
-                    };
+                await transaction.CommitAsync();
 
-                    _logger.LogWarning("Retornando produto com dados básicos devido a erro no recarregamento");
-                }
+                // 3) Recuperar produto completo para retornar
+                var produtoCriado = await _context.Produtos
+                    .Include(p => p.IdCategoriaNavigation)
+                    .Include(p => p.IdModeloNavigation)
+                    .Include(p => p.IdTecidoNavigation)
+                    .Include(p => p.IdStatusNavigation)
+                    .Include(p => p.Estoque)
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(p => p.IdProd == novoProduto.IdProd);
 
-                // Preparar resposta com todos os dados disponíveis
-                response.Dados = produtoRetorno;
-                response.Mensagem = "Produto adicionado com sucesso";
+                if (produtoCriado == null)
+                    throw new InvalidOperationException($"Produto criado mas não encontrado com ID {novoProduto.IdProd}");
 
-                _logger.LogInformation($"Produto retornado com dados completos: ID={response.Dados.IdProd}, Categoria={response.Dados.CategoriaNome}, Modelo={response.Dados.ModeloNome}");
+                response.Dados = CreateProdutoResponseDto(produtoCriado);
+                response.status = true;
+                response.Mensagem = "Produto criado com sucesso.";
+                return response;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Erro ao adicionar produto");
+                await transaction.RollbackAsync();
+                if (!string.IsNullOrWhiteSpace(imagePath))
+                {
+                    try { _imageService.DeleteImage(imagePath); }
+                    catch { /* ignora */ }
+                }
+                var detalhe = ex.InnerException?.Message ?? ex.Message;
+                _logger.LogError(ex, "❌ ERRO DE BANCO DE DADOS ao criar produto. {Detalle}", detalhe);
                 response.status = false;
-                response.Mensagem = $"Erro ao adicionar produto: {ex.Message}";
+                response.Mensagem = $"Erro interno ao criar produto: {ex.Message}. Detalhes: {detalhe}";
+                return response;
             }
-
-            return response;
         }
 
-        public async Task<ResponseModel<ProdutoDto>> UpdateProdutoAsync(int id, ProdutoDto produtoDto)
-        {
-            var response = new ResponseModel<ProdutoDto>();
 
+
+        public async Task<ResponseModel<ProdutoResponseDto>> UpdateProdutoAsync(int id, ProdutoUpdateCompletoDto produtoDto)
+        {
+            var response = new ResponseModel<ProdutoResponseDto>();
+
+            // Validar se o produto existe
+            var produtoExistente = await _context.Produtos
+                .Include(p => p.Estoque)
+                .FirstOrDefaultAsync(p => p.IdProd == id);
+
+            if (produtoExistente == null)
+            {
+                response.status = false;
+                response.Mensagem = "Produto não encontrado.";
+                return response;
+            }
+
+            // Validar se categoria, modelo e tecido existem
+            if (!await ValidarReferenciasAsync(produtoDto.IdCategoria, produtoDto.IdModelo, produtoDto.IdTecido))
+            {
+                response.status = false;
+                response.Mensagem = "Uma ou mais referências (categoria, modelo, tecido) não foram encontradas.";
+                return response;
+            }
+
+            // Validar status
+            if (produtoDto.IdStatus != STATUS_DISPONIVEL && produtoDto.IdStatus != STATUS_INDISPONIVEL)
+            {
+                response.status = false;
+                response.Mensagem = "Status deve ser 1 (Disponível) ou 2 (Indisponível).";
+                return response;
+            }
+
+            string? novaImagemPath = null;
+            string? imagemAntigaPath = produtoExistente.ImgUrl;
+
+            using var transaction = await _context.Database.BeginTransactionAsync();
             try
             {
-                var produto = await _context.Produtos.FindAsync(id);
-
-                if (produto == null)
-                {
-                    response.status = false;
-                    response.Mensagem = "Produto não encontrado";
-                    return response;
-                }
-
-                // Validar imagem apenas se uma nova imagem foi enviada
-                if (produtoDto.Imagem != null && !_imageService.IsValidImageFile(produtoDto.Imagem))
-                {
-                    response.status = false;
-                    response.Mensagem = "Arquivo de imagem inválido. Permitidos: JPG, JPEG, PNG, GIF, BMP, WEBP (máximo 5MB)";
-                    return response;
-                }
-
-                // Validar referências
-                var validationResult = await ValidateReferencesAsync(
-                    produtoDto.IdCategoria,
-                    produtoDto.IdModelo,
-                    produtoDto.IdTecido,
-                    produtoDto.IdStatus // No update, o status pode ser alterado
-                );
-
-                if (!validationResult.IsValid)
-                {
-                    response.status = false;
-                    response.Mensagem = validationResult.ErrorMessage;
-                    return response;
-                }
-
-                // Atualizar imagem se uma nova foi enviada
+                // Processar nova imagem se fornecida
                 if (produtoDto.Imagem != null)
                 {
-                    string novaImagemPath;
-                    try
-                    {
-                        novaImagemPath = await _imageService.SaveImageAsync(produtoDto.Imagem);
-
-                        // Deletar a imagem antiga se existir
-                        if (!string.IsNullOrEmpty(produto.ImgUrl))
-                        {
-                            _imageService.DeleteImage(produto.ImgUrl);
-                        }
-
-                        produto.ImgUrl = novaImagemPath;
-                    }
-                    catch (Exception ex)
+                    if (!_imageService.IsValidImageFile(produtoDto.Imagem))
                     {
                         response.status = false;
-                        response.Mensagem = $"Erro ao salvar nova imagem: {ex.Message}";
+                        response.Mensagem = "Formato de imagem inválido.";
                         return response;
+                    }
+
+                    novaImagemPath = await _imageService.SaveImageAsync(produtoDto.Imagem);
+                }
+
+                // Atualizar dados do produto
+                produtoExistente.Preco = produtoDto.Preco;
+                produtoExistente.IdCategoria = produtoDto.IdCategoria;
+                produtoExistente.IdModelo = produtoDto.IdModelo;
+                produtoExistente.IdTecido = produtoDto.IdTecido;
+                produtoExistente.IdStatus = produtoDto.IdStatus;
+                produtoExistente.descricao = produtoDto.Descricao;
+
+                // Atualizar imagem se uma nova foi fornecida
+                if (!string.IsNullOrWhiteSpace(novaImagemPath))
+                {
+                    produtoExistente.ImgUrl = novaImagemPath;
+                }
+
+                // Remover estoques existentes
+                var estoquesExistentes = await _context.Estoques
+                    .Where(e => e.IdProduto == id)
+                    .ToListAsync();
+
+                if (estoquesExistentes.Any())
+                {
+                    _context.Estoques.RemoveRange(estoquesExistentes);
+                    _logger.LogInformation("Removidos {Count} estoques existentes do produto {ProdutoId}", estoquesExistentes.Count, id);
+                    await _context.SaveChangesAsync();
+                }
+
+                // Adicionar novos estoques
+                if (produtoDto.TamanhosQuantidades != null && produtoDto.TamanhosQuantidades.Any())
+                {
+                    // Logar recebimento
+                    foreach (var tq in produtoDto.TamanhosQuantidades)
+                    {
+                        _logger.LogInformation("Novo item de estoque recebido para atualização: Tamanho='{Tamanho}', Quantidade={Quantidade}", tq.Tamanho, tq.Quantidade);
+                    }
+
+                    var tamanhosValidos = produtoDto.TamanhosQuantidades
+                        .Where(tq => !string.IsNullOrWhiteSpace(tq.Tamanho))
+                        .ToList();
+
+                    if (tamanhosValidos.Any())
+                    {
+                        var novosEstoques = tamanhosValidos
+                            .Select(tq => new Estoque
+                            {
+                                IdProduto = id,
+                                Tamanho = tq.Tamanho.Trim().ToUpper(),
+                                Quantidade = Math.Max(0, tq.Quantidade)
+                            })
+                            .GroupBy(e => e.Tamanho)
+                            .Select(g => new Estoque
+                            {
+                                IdProduto = id,
+                                Tamanho = g.Key,
+                                Quantidade = g.Sum(e => e.Quantidade)
+                            })
+                            .ToList();
+
+                        // Log dos estoques a inserir
+                        foreach (var est in novosEstoques)
+                        {
+                            _logger.LogInformation("Inserindo novo Estoque para atualização: ProdutoID={ProdutoId}, Tamanho='{Tamanho}', Quantidade={Quantidade}",
+                                id, est.Tamanho, est.Quantidade);
+                        }
+
+                        try
+                        {
+                            await _context.Estoques.AddRangeAsync(novosEstoques);
+                            await _context.SaveChangesAsync();
+                            _logger.LogInformation("Estoques atualizados: {Count} itens para Produto {ProdutoId}", novosEstoques.Count, id);
+                        }
+                        catch (Exception estEx)
+                        {
+                            var innerMsg = estEx.InnerException?.Message ?? estEx.Message;
+                            _logger.LogError(estEx, "Erro ao salvar novos estoques para Produto {ProdutoId}. InnerException: {Inner}", id, innerMsg);
+                            throw new InvalidOperationException($"Erro ao salvar estoque na atualização: {innerMsg}");
+                        }
                     }
                 }
 
-                // Atualizar propriedades do produto
-                produto.Preco = produtoDto.Preco;
-                produto.QuantEstoque = produtoDto.QuantEstoque;
-                produto.IdCategoria = produtoDto.IdCategoria;
-                produto.IdModelo = produtoDto.IdModelo;
-                produto.IdTecido = produtoDto.IdTecido;
-                produto.IdStatus = produtoDto.IdStatus;
-
-                _context.Produtos.Update(produto);
                 await _context.SaveChangesAsync();
+                await transaction.CommitAsync();
 
-                // Recarregar com propriedades de navegação
+                // Deletar imagem antiga se uma nova foi salva
+                if (!string.IsNullOrWhiteSpace(novaImagemPath) && !string.IsNullOrWhiteSpace(imagemAntigaPath))
+                {
+                    try
+                    {
+                        _imageService.DeleteImage(imagemAntigaPath);
+                    }
+                    catch (Exception deleteEx)
+                    {
+                        _logger.LogWarning(deleteEx, "Erro ao deletar imagem antiga durante atualização");
+                    }
+                }
+
+                // Buscar produto atualizado
                 var produtoAtualizado = await _context.Produtos
                     .Include(p => p.IdCategoriaNavigation)
                     .Include(p => p.IdModeloNavigation)
                     .Include(p => p.IdTecidoNavigation)
                     .Include(p => p.IdStatusNavigation)
+                    .Include(p => p.Estoque)
+                    .AsNoTracking()
                     .FirstOrDefaultAsync(p => p.IdProd == id);
 
                 if (produtoAtualizado == null)
                 {
-                    response.status = false;
-                    response.Mensagem = "Erro ao recuperar produto atualizado";
-                    return response;
+                    throw new InvalidOperationException($"Produto com ID {id} não foi encontrado após atualização");
                 }
 
-                response.Dados = CreateProdutoDto(produtoAtualizado);
-                response.Mensagem = "Produto atualizado com sucesso";
+                response.Dados = CreateProdutoResponseDto(produtoAtualizado);
+                response.status = true;
+                response.Mensagem = "Produto atualizado com sucesso.";
+
+                _logger.LogInformation("Produto {ProdutoId} atualizado com sucesso", id);
+
+                return response;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Erro ao atualizar produto com ID {Id}", id);
-                response.status = false;
-                response.Mensagem = $"Erro ao atualizar produto: {ex.Message}";
-            }
+                await transaction.RollbackAsync();
 
-            return response;
+                // Tentar deletar nova imagem se foi salva
+                if (!string.IsNullOrWhiteSpace(novaImagemPath))
+                {
+                    try
+                    {
+                        _imageService.DeleteImage(novaImagemPath);
+                    }
+                    catch (Exception deleteEx)
+                    {
+                        _logger.LogWarning(deleteEx, "Erro ao deletar nova imagem durante rollback");
+                    }
+                }
+
+                var inner = ex.InnerException?.Message;
+                _logger.LogError(ex, "Erro ao atualizar produto {ProdutoId}: {Message}. InnerException: {Inner}", id, ex.Message, inner);
+                response.status = false;
+                response.Mensagem = $"Erro interno ao atualizar produto: {ex.Message}. Detalhes: {inner}";
+                return response;
+            }
         }
 
         public async Task<ResponseModel<bool>> DeleteProdutoAsync(int id)
@@ -432,125 +449,126 @@ namespace Backend_Vestetec_App.Services
 
             try
             {
-                var produto = await _context.Produtos.FindAsync(id);
+                var produto = await _context.Produtos
+                    .Include(p => p.Estoque)
+                    .FirstOrDefaultAsync(p => p.IdProd == id);
 
                 if (produto == null)
                 {
                     response.status = false;
-                    response.Mensagem = "Produto não encontrado";
+                    response.Mensagem = "Produto não encontrado.";
                     response.Dados = false;
                     return response;
                 }
 
-                // Deletar imagem associada se existir
-                if (!string.IsNullOrEmpty(produto.ImgUrl))
+                var imagemPath = produto.ImgUrl;
+
+                using var transaction = await _context.Database.BeginTransactionAsync();
+                try
                 {
-                    _imageService.DeleteImage(produto.ImgUrl);
+                    // Remover estoques associados
+                    if (produto.Estoque != null && produto.Estoque.Any())
+                    {
+                        _context.Estoques.RemoveRange(produto.Estoque);
+                        _logger.LogInformation("Removidos {Count} estoques do produto {ProdutoId}", produto.Estoque.Count, id);
+                    }
+
+                    // Remover produto
+                    _context.Produtos.Remove(produto);
+                    await _context.SaveChangesAsync();
+
+                    await transaction.CommitAsync();
+
+                    // Deletar imagem se existir
+                    if (!string.IsNullOrWhiteSpace(imagemPath))
+                    {
+                        try
+                        {
+                            _imageService.DeleteImage(imagemPath);
+                            _logger.LogInformation("Imagem {ImagePath} deletada do produto {ProdutoId}", imagemPath, id);
+                        }
+                        catch (Exception deleteEx)
+                        {
+                            _logger.LogWarning(deleteEx, "Erro ao deletar imagem {ImagePath} do produto {ProdutoId}", imagemPath, id);
+                        }
+                    }
+
+                    response.status = true;
+                    response.Mensagem = "Produto excluído com sucesso.";
+                    response.Dados = true;
+
+                    _logger.LogInformation("Produto {ProdutoId} excluído com sucesso", id);
+
+                    return response;
                 }
-
-                _context.Produtos.Remove(produto);
-                await _context.SaveChangesAsync();
-
-                response.Dados = true;
-                response.Mensagem = "Produto excluído com sucesso";
+                catch (Exception)
+                {
+                    await transaction.RollbackAsync();
+                    throw;
+                }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Erro ao excluir produto com ID {Id}", id);
+                _logger.LogError(ex, "Erro ao excluir produto {ProdutoId}: {Message}", id, ex.Message);
                 response.status = false;
-                response.Mensagem = $"Erro ao excluir produto: {ex.Message}";
+                response.Mensagem = $"Erro interno ao excluir produto: {ex.Message}";
                 response.Dados = false;
+                return response;
             }
-
-            return response;
         }
 
-        // MÉTODOS AUXILIARES
+        #region Métodos Auxiliares Privados
 
-        /// <summary>
-        /// Valida se todas as referências existem no banco de dados
-        /// </summary>
-        private async Task<(bool IsValid, string ErrorMessage)> ValidateReferencesAsync(
-            int categoriaId, int modeloId, int? tecidoId, int? statusId = null)
+        private static ProdutoResponseDto CreateProdutoResponseDto(Produto produto)
         {
-            var categoriaExists = await _context.Categorias.AnyAsync(c => c.IdCategoria == categoriaId);
-            var modeloExists = await _context.Modelos.AnyAsync(m => m.IdModelo == modeloId);
-            var tecidoExists = tecidoId.HasValue ?
-                await _context.Tecidos.AnyAsync(t => t.IdTecido == tecidoId) : true;
-            var statusExists = statusId.HasValue ?
-                await _context.Statuses.AnyAsync(s => s.IdStatus == statusId) : true;
-
-            if (!categoriaExists)
-                return (false, "Categoria não encontrada");
-            if (!modeloExists)
-                return (false, "Modelo não encontrado");
-            if (!tecidoExists)
-                return (false, "Tecido não encontrado");
-            if (!statusExists)
-                return (false, "Status não encontrado");
-
-            return (true, string.Empty);
-        }
-
-        /// <summary>
-        /// Cria um ProdutoDto a partir de um Produto com navigation properties carregadas
-        /// </summary>
-        private ProdutoDto CreateProdutoDto(Produto produto)
-        {
-            return new ProdutoDto
+            return new ProdutoResponseDto
             {
                 IdProd = produto.IdProd,
                 Preco = produto.Preco,
-                QuantEstoque = produto.QuantEstoque,
                 IdCategoria = produto.IdCategoria,
                 IdModelo = produto.IdModelo,
-                IdTecido = produto.IdTecido,
+                IdTecido = produto.IdTecido ?? 0,
                 IdStatus = produto.IdStatus,
+                Descricao = produto.descricao,
                 ImgUrl = produto.ImgUrl,
-                CategoriaNome = produto.IdCategoriaNavigation?.Categoria1,
-                ModeloNome = produto.IdModeloNavigation?.Modelo1,
-                TecidoNome = produto.IdTecido.HasValue ? produto.IdTecidoNavigation?.Tipo : null,
-                StatusNome = produto.IdStatusNavigation?.Descricao
+                CategoriaNome = produto.IdCategoriaNavigation?.Categoria1 ?? "Categoria não encontrada",
+                ModeloNome = produto.IdModeloNavigation?.Modelo1 ?? "Modelo não encontrado",
+                TecidoNome = produto.IdTecidoNavigation?.Tipo ?? "Tecido não encontrado",
+                StatusNome = produto.IdStatusNavigation?.Descricao ?? "Status não encontrado",
+                TamanhosQuantidades = produto.Estoque?.Select(e => new TamanhoQuantidadeDto
+                {
+                    Tamanho = e.Tamanho,
+                    Quantidade = e.Quantidade
+                }).OrderBy(tq => tq.Tamanho).ToList() ?? new List<TamanhoQuantidadeDto>()
             };
         }
 
-        /// <summary>
-        /// Método auxiliar para diagnosticar problemas de relacionamento
-        /// </summary>
-        private async Task<string> DiagnosticarRelacionamentos(int produtoId)
+        private async Task<bool> ValidarReferenciasAsync(int categoriaId, int modeloId, int tecidoId)
         {
             try
             {
-                var produto = await _context.Produtos.FindAsync(produtoId);
-                if (produto == null) return $"Produto {produtoId} não existe";
+                var categoriaExiste = await _context.Categorias
+                    .AsNoTracking()
+                    .AnyAsync(c => c.IdCategoria == categoriaId);
 
-                var diagnostico = new List<string>
-                {
-                    $"Produto ID: {produto.IdProd}",
-                    $"Categoria ID: {produto.IdCategoria}",
-                    $"Modelo ID: {produto.IdModelo}",
-                    $"Tecido ID: {produto.IdTecido}",
-                    $"Status ID: {produto.IdStatus}"
-                };
+                var modeloExiste = await _context.Modelos
+                    .AsNoTracking()
+                    .AnyAsync(m => m.IdModelo == modeloId);
 
-                // Verificar se as referências existem
-                var categoriaExists = await _context.Categorias.AnyAsync(c => c.IdCategoria == produto.IdCategoria);
-                var modeloExists = await _context.Modelos.AnyAsync(m => m.IdModelo == produto.IdModelo);
-                var tecidoExists = produto.IdTecido.HasValue ?
-                    await _context.Tecidos.AnyAsync(t => t.IdTecido == produto.IdTecido) : true;
-                var statusExists = await _context.Statuses.AnyAsync(s => s.IdStatus == produto.IdStatus);
+                var tecidoExiste = await _context.Tecidos
+                    .AsNoTracking()
+                    .AnyAsync(t => t.IdTecido == tecidoId);
 
-                diagnostico.Add($"Categoria existe: {categoriaExists}");
-                diagnostico.Add($"Modelo existe: {modeloExists}");
-                diagnostico.Add($"Tecido existe: {tecidoExists}");
-                diagnostico.Add($"Status existe: {statusExists}");
-
-                return string.Join(" | ", diagnostico);
+                return categoriaExiste && modeloExiste && tecidoExiste;
             }
             catch (Exception ex)
             {
-                return $"Erro no diagnóstico: {ex.Message}";
+                _logger.LogError(ex, "Erro ao validar referências: Categoria={CategoriaId}, Modelo={ModeloId}, Tecido={TecidoId}",
+                    categoriaId, modeloId, tecidoId);
+                return false;
             }
         }
+
+        #endregion
     }
 }

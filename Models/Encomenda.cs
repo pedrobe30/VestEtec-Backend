@@ -15,21 +15,24 @@ public partial class Encomenda
     [Column("id_encomenda", TypeName = "int(11)")]
     public int IdEncomenda { get; set; }
 
-    [Column("Id_aluno", TypeName = "int(11)")]
+    [Column("id_aluno", TypeName = "int(11)")]
     public int IdAluno { get; set; }
 
     [Column("data_encomenda", TypeName = "datetime")]
     public DateTime DataEncomenda { get; set; }
 
-    [Column("preco_encomenda")]
+    [Column("valor_total")]
     [Precision(10, 2)]
     public decimal PrecoEncomenda { get; set; }
 
-    [Column("situacao")]
-    [StringLength(100)]
+    [Column("status_encomenda")]
     public string? Situacao { get; set; }
 
-    [Column("Id_escola", TypeName = "int(11)")]
+    // CORREÇÃO: Mudança de string para DateTime para corresponder ao tipo DATE do banco
+    [Column("data_entrega_prevista")]
+    public DateTime? DataEntrega { get; set; }
+
+    [Column("id_escola", TypeName = "int(11)")]
     public int IdEscola { get; set; }
 
     [ForeignKey("IdAluno")]
@@ -39,4 +42,7 @@ public partial class Encomenda
     [ForeignKey("IdEscola")]
     [InverseProperty("Encomenda")]
     public virtual Escola IdEscolaNavigation { get; set; } = null!;
+
+    [InverseProperty("IdEncomendaNavigation")]
+    public virtual ICollection<Itensencomendado> Itensencomendados { get; set; } = new List<Itensencomendado>();
 }

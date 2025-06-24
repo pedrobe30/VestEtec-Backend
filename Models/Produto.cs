@@ -1,4 +1,5 @@
-﻿using System;
+﻿// Models/Produto.cs
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -14,15 +15,13 @@ namespace Backend_Vestetec_App.Models;
 public partial class Produto
 {
     [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Column("ID_prod", TypeName = "int(11)")]
     public int IdProd { get; set; }
 
     [Column("preco")]
     [Precision(10, 2)]
     public decimal Preco { get; set; }
-
-    [Column("quant_estoque", TypeName = "int(11)")]
-    public int QuantEstoque { get; set; }
 
     [Column("ID_categoria", TypeName = "int(11)")]
     public int IdCategoria { get; set; }
@@ -42,7 +41,7 @@ public partial class Produto
 
     [Column("descricao")]
     [StringLength(255)]
-    public string? descricao {get; set;}
+    public string? descricao { get; set; }
 
     [ForeignKey("IdCategoria")]
     [InverseProperty("Produtos")]
@@ -59,4 +58,10 @@ public partial class Produto
     [ForeignKey("IdTecido")]
     [InverseProperty("Produtos")]
     public virtual Tecido? IdTecidoNavigation { get; set; }
+
+    [InverseProperty("IdProdutoNavigation")]
+    public virtual ICollection<Estoque> Estoque { get; set; } = new List<Estoque>();
+
+    [InverseProperty("IdProdutoNavigation")]
+    public virtual ICollection<Itensencomendado> Itensencomendados { get; set; } = new List<Itensencomendado>();
 }

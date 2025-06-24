@@ -46,6 +46,10 @@ builder.Services.AddScoped<IModeloService, ModeloService>();
 builder.Services.AddScoped<ITecidoService, TecidoService>();
 builder.Services.AddScoped<IProdutoService, ProdutoService>();
 builder.Services.AddScoped<IImageService, ImageService>();
+builder.Services.AddScoped<IEncomendaService, EncomendaService>();
+builder.Services.AddScoped<IAdminService, AdminService>();
+builder.Services.AddScoped<IEmpresaService, EmpresaService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseMySql(connectionString, serverVersion);
@@ -72,14 +76,14 @@ builder.Services.Configure<IISServerOptions>(options =>
 // NOVA CONFIGURA��O: Para servidores Kestrel
 builder.Services.Configure<KestrelServerOptions>(options =>
 {
-    options.Limits.MaxRequestBodySize = 3 * 1024 * 1024; 
+    options.Limits.MaxRequestBodySize = 3 * 1024 * 1024;
 });
 
 // NOVA CONFIGURA��O: Configura as op��es de formul�rio para aceitar arquivos maiores
 builder.Services.Configure<FormOptions>(options =>
 {
     options.ValueLengthLimit = int.MaxValue;
-    options.MultipartBodyLengthLimit = 3 * 1024 * 1024; 
+    options.MultipartBodyLengthLimit = 3 * 1024 * 1024;
     options.MultipartHeadersLengthLimit = int.MaxValue;
 });
 
