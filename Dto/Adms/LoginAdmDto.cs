@@ -22,6 +22,7 @@ namespace Backend_Vestetec_App.DTOs
         public int IdEmpresa { get; set; }
         public string? NomeEmpresa { get; set; }
         public DateTime DataLogin { get; set; }
+        public string Token { get; set; } = null!;
         public string Message { get; set; } = "Login realizado com sucesso";
     }
 
@@ -63,5 +64,16 @@ namespace Backend_Vestetec_App.DTOs
         [Required(ErrorMessage = "Código preciso é obrigatório")]
         [StringLength(10, ErrorMessage = "Código preciso deve ter no máximo 10 caracteres")]
         public string CodigoPreciso { get; set; } = null!;
+    }
+
+     public class ValidateAdminTokenDto
+    {
+        public int IdAdm { get; set; }
+        public string Email { get; set; } = null!;
+        public string Nome { get; set; } = null!;
+        public int IdEmpresa { get; set; }
+        public string? NomeEmpresa { get; set; }
+        public bool IsValid { get; set; }
+        public DateTime? ExpiresAt { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "rTb3ApcGzT64dfL05TPynZVKaTnwEioq4emr6/DWyy4=",
+  "Hash": "PWI3NLEy/KRVt6rETw8tJ61u9RoqVf5xs+DMiDxvJBQ=",
   "Source": "Backend_Vestetec_App",
   "BasePath": "_content/Backend_Vestetec_App",
   "Mode": "Default",
@@ -205,25 +205,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\produtos\\3308a2d6-d8b1-4d24-929c-6f4102e3f7c7.png"
-    },
-    {
-      "Identity": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\uploads\\produtos\\3af72c91-6069-474a-9795-8f4a01671b93.png",
-      "SourceId": "Backend_Vestetec_App",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\",
-      "BasePath": "_content/Backend_Vestetec_App",
-      "RelativePath": "uploads/produtos/3af72c91-6069-474a-9795-8f4a01671b93.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\produtos\\3af72c91-6069-474a-9795-8f4a01671b93.png"
     },
     {
       "Identity": "C:\\Users\\Bernardo\\Controle_de_Estoque\\Projeto-App\\Backend_Vestetec_App\\wwwroot\\uploads\\produtos\\4cd6593d-adf3-4dbb-9da1-71549c59c2b1.png",
