@@ -1,10 +1,10 @@
-// Controllers/ProdutoController.cs - CORRIGIDO E COM LOGS DE DEPURAÇÃO
+// Controllers/ProdutoController.cs - ATUALIZADO PARA MÚLTIPLAS IMAGENS
 
 using Backend_Vestetec_App.DTOs;
 using Backend_Vestetec_App.Interfaces;
 using Backend_Vestetec_App.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging; // NECESSÁRIO PARA O LOGGER
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,9 +17,8 @@ namespace Backend_Vestetec_App.Controllers
     public class ProdutoController : ControllerBase
     {
         private readonly IProdutoService _produtoService;
-        private readonly ILogger<ProdutoController> _logger; // CAMPO PARA O LOGGER
+        private readonly ILogger<ProdutoController> _logger;
 
-        // CONSTRUTOR ATUALIZADO PARA INJETAR O LOGGER
         public ProdutoController(IProdutoService produtoService, ILogger<ProdutoController> logger)
         {
             _produtoService = produtoService;
@@ -27,7 +26,7 @@ namespace Backend_Vestetec_App.Controllers
         }
 
         /// <summary>
-        /// Cria um novo produto com tamanhos e quantidades
+        /// Cria um novo produto com múltiplas imagens (máximo 4), tamanhos e quantidades
         /// </summary>
         [HttpPost]
         [Consumes("multipart/form-data")]
@@ -44,14 +43,43 @@ namespace Backend_Vestetec_App.Controllers
                 });
             }
 
+            // Validar preço
             if (produtoDto.Preco <= 0)
             {
-                return BadRequest(new ResponseModel<ProdutoResponseDto> { status = false, Mensagem = "O preço deve ser maior que zero." });
+                return BadRequest(new ResponseModel<ProdutoResponseDto>
+                {
+                    status = false,
+                    Mensagem = "O preço deve ser maior que zero."
+                });
             }
 
+            // Validar imagens
+            if (produtoDto.Imagens == null || !produtoDto.Imagens.Any())
+            {
+                return BadRequest(new ResponseModel<ProdutoResponseDto>
+                {
+                    status = false,
+                    Mensagem = "Pelo menos uma imagem é obrigatória."
+                });
+            }
+
+            if (produtoDto.Imagens.Count > 4)
+            {
+                return BadRequest(new ResponseModel<ProdutoResponseDto>
+                {
+                    status = false,
+                    Mensagem = "Máximo de 4 imagens permitidas."
+                });
+            }
+
+            // Validar tamanhos e quantidades
             if (string.IsNullOrWhiteSpace(produtoDto.TamanhosQuantidadesJson))
             {
-                return BadRequest(new ResponseModel<ProdutoResponseDto> { status = false, Mensagem = "Os tamanhos e quantidades são obrigatórios." });
+                return BadRequest(new ResponseModel<ProdutoResponseDto>
+                {
+                    status = false,
+                    Mensagem = "Os tamanhos e quantidades são obrigatórios."
+                });
             }
 
             List<TamanhoQuantidadeDto> tamanhosQuantidades;
@@ -59,10 +87,8 @@ namespace Backend_Vestetec_App.Controllers
             {
                 var jsonLimpo = produtoDto.TamanhosQuantidadesJson.Trim();
 
-                // ETAPA DE DEPURAÇÃO 1: Logar a string recebida
                 _logger.LogInformation("--> JSON Recebido para CRIAR produto: {JsonString}", jsonLimpo);
 
-                // ETAPA DE DEPURAÇÃO 2: Remover aspas "embrulhadoras", se existirem
                 if (jsonLimpo.StartsWith("\"") && jsonLimpo.EndsWith("\""))
                 {
                     jsonLimpo = jsonLimpo.Substring(1, jsonLimpo.Length - 2);
@@ -84,21 +110,35 @@ namespace Backend_Vestetec_App.Controllers
 
             if (tamanhosQuantidades == null || !tamanhosQuantidades.Any())
             {
-                return BadRequest(new ResponseModel<ProdutoResponseDto> { status = false, Mensagem = "Lista de tamanhos está vazia após parsing." });
+                return BadRequest(new ResponseModel<ProdutoResponseDto>
+                {
+                    status = false,
+                    Mensagem = "Lista de tamanhos está vazia após parsing."
+                });
             }
 
+            // Validar cada item de tamanho/quantidade
             foreach (var item in tamanhosQuantidades)
             {
                 if (string.IsNullOrWhiteSpace(item.Tamanho))
                 {
-                    return BadRequest(new ResponseModel<ProdutoResponseDto> { status = false, Mensagem = "Todos os tamanhos devem ser preenchidos." });
+                    return BadRequest(new ResponseModel<ProdutoResponseDto>
+                    {
+                        status = false,
+                        Mensagem = "Todos os tamanhos devem ser preenchidos."
+                    });
                 }
                 if (item.Quantidade < 0)
                 {
-                    return BadRequest(new ResponseModel<ProdutoResponseDto> { status = false, Mensagem = "As quantidades não podem ser negativas." });
+                    return BadRequest(new ResponseModel<ProdutoResponseDto>
+                    {
+                        status = false,
+                        Mensagem = "As quantidades não podem ser negativas."
+                    });
                 }
             }
 
+            // Criar DTO completo
             var produtoCompleto = new ProdutoCompletoDto
             {
                 Preco = produtoDto.Preco,
@@ -106,9 +146,11 @@ namespace Backend_Vestetec_App.Controllers
                 IdModelo = produtoDto.IdModelo,
                 IdTecido = produtoDto.IdTecido,
                 Descricao = produtoDto.Descricao,
-                Imagem = produtoDto.Imagem,
+                Imagens = produtoDto.Imagens,
                 TamanhosQuantidades = tamanhosQuantidades
             };
+
+            _logger.LogInformation("Criando produto com {ImagensCount} imagens", produtoDto.Imagens.Count);
 
             var response = await _produtoService.AddProdutoCompletoAsync(produtoCompleto);
 
@@ -121,7 +163,7 @@ namespace Backend_Vestetec_App.Controllers
         }
 
         /// <summary>
-        /// Atualiza um produto existente
+        /// Atualiza um produto existente com controle de múltiplas imagens
         /// </summary>
         [HttpPut("{id}")]
         [Consumes("multipart/form-data")]
@@ -129,7 +171,11 @@ namespace Backend_Vestetec_App.Controllers
         {
             if (id <= 0)
             {
-                return BadRequest(new ResponseModel<ProdutoResponseDto> { status = false, Mensagem = "ID do produto deve ser maior que zero." });
+                return BadRequest(new ResponseModel<ProdutoResponseDto>
+                {
+                    status = false,
+                    Mensagem = "ID do produto deve ser maior que zero."
+                });
             }
 
             if (!ModelState.IsValid)
@@ -141,15 +187,36 @@ namespace Backend_Vestetec_App.Controllers
                 });
             }
 
+            // Validar se teremos imagens suficientes após a atualização
+            var imagensParaManter = produtoDto.ImagensParaManter?.Count ?? 0;
+            var novasImagens = produtoDto.NovasImagens?.Count ?? 0;
+            var totalImagens = imagensParaManter + novasImagens;
+
+            if (totalImagens == 0)
+            {
+                return BadRequest(new ResponseModel<ProdutoResponseDto>
+                {
+                    status = false,
+                    Mensagem = "O produto deve ter pelo menos uma imagem."
+                });
+            }
+
+            if (totalImagens > 4)
+            {
+                return BadRequest(new ResponseModel<ProdutoResponseDto>
+                {
+                    status = false,
+                    Mensagem = "Máximo de 4 imagens permitidas."
+                });
+            }
+
             List<TamanhoQuantidadeDto> tamanhosQuantidades;
             try
             {
                 var jsonLimpo = produtoDto.TamanhosQuantidadesJson.Trim();
 
-                // ETAPA DE DEPURAÇÃO 1: Logar a string recebida
                 _logger.LogInformation("--> JSON Recebido para ATUALIZAR produto: {JsonString}", jsonLimpo);
 
-                // ETAPA DE DEPURAÇÃO 2: Remover aspas "embrulhadoras", se existirem
                 if (jsonLimpo.StartsWith("\"") && jsonLimpo.EndsWith("\""))
                 {
                     jsonLimpo = jsonLimpo.Substring(1, jsonLimpo.Length - 2);
@@ -162,12 +229,20 @@ namespace Backend_Vestetec_App.Controllers
             catch (JsonException ex)
             {
                 _logger.LogError(ex, "Falha no parsing do JSON ao atualizar produto.");
-                return BadRequest(new ResponseModel<ProdutoResponseDto> { status = false, Mensagem = $"JSON inválido: {ex.Message}" });
+                return BadRequest(new ResponseModel<ProdutoResponseDto>
+                {
+                    status = false,
+                    Mensagem = $"JSON inválido: {ex.Message}"
+                });
             }
 
             if (tamanhosQuantidades == null || !tamanhosQuantidades.Any())
             {
-                return BadRequest(new ResponseModel<ProdutoResponseDto> { status = false, Mensagem = "Lista de tamanhos está vazia após parsing." });
+                return BadRequest(new ResponseModel<ProdutoResponseDto>
+                {
+                    status = false,
+                    Mensagem = "Lista de tamanhos está vazia após parsing."
+                });
             }
 
             var produtoCompleto = new ProdutoUpdateCompletoDto
@@ -178,9 +253,13 @@ namespace Backend_Vestetec_App.Controllers
                 IdTecido = produtoDto.IdTecido,
                 IdStatus = produtoDto.IdStatus,
                 Descricao = produtoDto.Descricao,
-                Imagem = produtoDto.Imagem,
+                NovasImagens = produtoDto.NovasImagens,
+                ImagensParaManter = produtoDto.ImagensParaManter,
                 TamanhosQuantidades = tamanhosQuantidades
             };
+
+            _logger.LogInformation("Atualizando produto {Id} - Imagens para manter: {Manter}, Novas imagens: {Novas}",
+                id, imagensParaManter, novasImagens);
 
             var response = await _produtoService.UpdateProdutoAsync(id, produtoCompleto);
             return response.status ? Ok(response) : BadRequest(response);
@@ -204,7 +283,11 @@ namespace Backend_Vestetec_App.Controllers
         {
             if (id <= 0)
             {
-                return BadRequest(new ResponseModel<ProdutoResponseDto> { status = false, Mensagem = "ID do produto deve ser maior que zero." });
+                return BadRequest(new ResponseModel<ProdutoResponseDto>
+                {
+                    status = false,
+                    Mensagem = "ID do produto deve ser maior que zero."
+                });
             }
             var response = await _produtoService.GetProdutoByIdAsync(id);
             return response.status ? Ok(response) : NotFound(response);
@@ -218,7 +301,11 @@ namespace Backend_Vestetec_App.Controllers
         {
             if (categoriaId <= 0)
             {
-                return BadRequest(new ResponseModel<List<ProdutoResponseDto>> { status = false, Mensagem = "ID da categoria deve ser maior que zero." });
+                return BadRequest(new ResponseModel<List<ProdutoResponseDto>>
+                {
+                    status = false,
+                    Mensagem = "ID da categoria deve ser maior que zero."
+                });
             }
             var response = await _produtoService.GetProdutosByCategoriaAsync(categoriaId);
             return response.status ? Ok(response) : BadRequest(response);
@@ -232,7 +319,12 @@ namespace Backend_Vestetec_App.Controllers
         {
             if (id <= 0)
             {
-                return BadRequest(new ResponseModel<bool> { status = false, Mensagem = "ID do produto deve ser maior que zero.", Dados = false });
+                return BadRequest(new ResponseModel<bool>
+                {
+                    status = false,
+                    Mensagem = "ID do produto deve ser maior que zero.",
+                    Dados = false
+                });
             }
             var response = await _produtoService.DeleteProdutoAsync(id);
             return response.status ? Ok(response) : BadRequest(response);

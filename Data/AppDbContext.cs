@@ -37,6 +37,8 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<Produto> Produtos { get; set; }
 
+    public virtual DbSet<ProdutoImagem> ProdutoImagens { get; set; }
+
     public virtual DbSet<Status> Statuses { get; set; }
 
     public virtual DbSet<Tecido> Tecidos { get; set; }
@@ -136,7 +138,7 @@ public partial class AppDbContext : DbContext
                 entity.ToTable("produto");
                 entity.HasKey(e => e.IdProd).HasName("PRIMARY");
 
-                entity.Property(e => e.IdProd)  
+                entity.Property(e => e.IdProd)
                       .HasColumnName("ID_prod")
                       .ValueGeneratedOnAdd(); // mudar de ValueGeneratedNever para ValueGeneratedOnAdd
 
@@ -192,7 +194,57 @@ public partial class AppDbContext : DbContext
                       .HasForeignKey(e => e.IdProduto)
                       .OnDelete(DeleteBehavior.Cascade)
                       .HasConstraintName("fk_estoque_produto");
+
+                // NOVA CONFIGURAÇÃO PARA PRODUTO IMAGENS
+                entity.HasMany(e => e.ProdutoImagens)
+                      .WithOne(e => e.IdProdutoNavigation)
+                      .HasForeignKey(e => e.IdProduto)
+                      .OnDelete(DeleteBehavior.Cascade)
+                      .HasConstraintName("fk_produto_imagem");
             });
+
+        // NOVA CONFIGURAÇÃO DA TABELA PRODUTO_IMAGEM
+        modelBuilder.Entity<ProdutoImagem>(entity =>
+        {
+            entity.ToTable("produto_imagem");
+            entity.HasKey(e => e.IdProdutoImagem).HasName("PRIMARY");
+
+            entity.Property(e => e.IdProdutoImagem)
+                  .HasColumnName("ID_produto_imagem")
+                  .ValueGeneratedOnAdd();
+
+            entity.Property(e => e.IdProduto)
+                  .HasColumnName("ID_produto");
+
+            entity.Property(e => e.ImgUrl)
+                  .HasColumnName("img_url")
+                  .HasMaxLength(255)
+                  .IsRequired();
+
+            entity.Property(e => e.OrdemExibicao)
+                  .HasColumnName("ordem_exibicao")
+                  .HasDefaultValue((byte)1);
+
+            entity.Property(e => e.IsPrincipal)
+                  .HasColumnName("is_principal")
+                  .HasDefaultValue(false);
+
+            entity.Property(e => e.DataCriacao)
+                  .HasColumnName("data_criacao")
+                  .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+            entity.HasOne(d => d.IdProdutoNavigation)
+                  .WithMany(p => p.ProdutoImagens)
+                  .HasForeignKey(d => d.IdProduto)
+                  .OnDelete(DeleteBehavior.Cascade)
+                  .HasConstraintName("fk_produto_imagem");
+
+            // Índice para otimizar consultas por produto
+            entity.HasIndex(e => e.IdProduto, "idx_produto_imagem_produto");
+
+            // Índice para otimizar consultas por imagem principal
+            entity.HasIndex(e => new { e.IdProduto, e.IsPrincipal }, "idx_produto_imagem_principal");
+        });
 
         modelBuilder.Entity<Status>(entity =>
         {
@@ -236,14 +288,10 @@ public partial class AppDbContext : DbContext
         });
 
         modelBuilder.Entity<CodigoVerificacao>(entity =>
-    {
-        entity.HasKey(e => e.Id).HasName("PRIMARY");
-        entity.Property(e => e.Id).ValueGeneratedOnAdd();
-    });
-
-
-
-
+        {
+            entity.HasKey(e => e.Id).HasName("PRIMARY");
+            entity.Property(e => e.Id).ValueGeneratedOnAdd();
+        });
 
         OnModelCreatingPartial(modelBuilder);
     }

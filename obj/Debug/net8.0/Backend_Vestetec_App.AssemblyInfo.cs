@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Backend_Vestetec_App")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+56458c1c465a33469d118aa12b29421279b9205b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c373a7d0dbc64091569236a5ea388558f28f2838")]
 [assembly: System.Reflection.AssemblyProductAttribute("Backend_Vestetec_App")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Backend_Vestetec_App")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

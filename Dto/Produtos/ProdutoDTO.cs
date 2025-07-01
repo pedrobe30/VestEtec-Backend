@@ -6,6 +6,17 @@ using System.Text.Json;
 namespace Backend_Vestetec_App.DTOs
 {
     /// <summary>
+    /// DTO para representar uma imagem do produto
+    /// </summary>
+    public class ProdutoImagemDto
+    {
+        public int? IdProdutoImagem { get; set; }
+        public string ImgUrl { get; set; } = string.Empty;
+        public byte OrdemExibicao { get; set; } = 1;
+        public bool IsPrincipal { get; set; } = false;
+    }
+
+    /// <summary>
     /// DTO para representar tamanho e quantidade
     /// </summary>
     public class TamanhoQuantidadeDto
@@ -19,7 +30,7 @@ namespace Backend_Vestetec_App.DTOs
     }
 
     /// <summary>
-    /// DTO simplificado para criação de produtos
+    /// DTO para criação de produtos com múltiplas imagens
     /// </summary>
     public class ProdutoCreateDto
     {
@@ -39,15 +50,16 @@ namespace Backend_Vestetec_App.DTOs
         [StringLength(255, ErrorMessage = "A descrição deve ter no máximo 255 caracteres")]
         public string? Descricao { get; set; }
 
-        [Required(ErrorMessage = "A imagem é obrigatória")]
-        public IFormFile Imagem { get; set; } = null!;
+        [Required(ErrorMessage = "Pelo menos uma imagem é obrigatória")]
+        [MaxLength(4, ErrorMessage = "Máximo de 4 imagens permitidas")]
+        public List<IFormFile> Imagens { get; set; } = new List<IFormFile>();
 
         [Required(ErrorMessage = "Os tamanhos e quantidades são obrigatórios")]
         public string TamanhosQuantidadesJson { get; set; } = string.Empty;
     }
 
     /// <summary>
-    /// DTO para atualização de produtos
+    /// DTO para atualização de produtos com múltiplas imagens
     /// </summary>
     public class ProdutoUpdateDto
     {
@@ -71,14 +83,19 @@ namespace Backend_Vestetec_App.DTOs
         [StringLength(255, ErrorMessage = "A descrição deve ter no máximo 255 caracteres")]
         public string? Descricao { get; set; }
 
-        public IFormFile? Imagem { get; set; }
+        // Para novas imagens a serem adicionadas
+        [MaxLength(4, ErrorMessage = "Máximo de 4 imagens permitidas")]
+        public List<IFormFile>? NovasImagens { get; set; }
+
+        // Para controlar quais imagens manter/remover (IDs das imagens existentes)
+        public List<int>? ImagensParaManter { get; set; }
 
         [Required(ErrorMessage = "Os tamanhos e quantidades são obrigatórios")]
         public string TamanhosQuantidadesJson { get; set; } = string.Empty;
     }
 
     /// <summary>
-    /// DTO para resposta - contém todos os dados do produto
+    /// DTO para resposta - contém todos os dados do produto com múltiplas imagens
     /// </summary>
     public class ProdutoResponseDto
     {
@@ -89,7 +106,12 @@ namespace Backend_Vestetec_App.DTOs
         public int IdTecido { get; set; }
         public int IdStatus { get; set; }
         public string? Descricao { get; set; }
+        
+        // MANTIDO PARA COMPATIBILIDADE - IMAGEM PRINCIPAL
         public string? ImgUrl { get; set; }
+
+        // NOVA PROPRIEDADE - LISTA DE TODAS AS IMAGENS
+        public List<ProdutoImagemDto> Imagens { get; set; } = new List<ProdutoImagemDto>();
 
         // Nomes para exibição
         public string? CategoriaNome { get; set; }
@@ -111,7 +133,7 @@ namespace Backend_Vestetec_App.DTOs
         public int IdModelo { get; set; }
         public int IdTecido { get; set; }
         public string? Descricao { get; set; }
-        public IFormFile Imagem { get; set; } = null!;
+        public List<IFormFile> Imagens { get; set; } = new List<IFormFile>();
         public List<TamanhoQuantidadeDto> TamanhosQuantidades { get; set; } = new();
     }
 
@@ -126,10 +148,12 @@ namespace Backend_Vestetec_App.DTOs
         public int IdTecido { get; set; }
         public int IdStatus { get; set; }
         public string? Descricao { get; set; }
-        public IFormFile? Imagem { get; set; }
+        public List<IFormFile>? NovasImagens { get; set; }
+        public List<int>? ImagensParaManter { get; set; }
         public List<TamanhoQuantidadeDto> TamanhosQuantidades { get; set; } = new();
     }
 
+    // MANTIDOS PARA COMPATIBILIDADE
     /// <summary>
     /// DTO principal - mantido para compatibilidade
     /// </summary>
@@ -161,6 +185,7 @@ namespace Backend_Vestetec_App.DTOs
         public string? StatusNome { get; set; }
 
         public List<TamanhoQuantidadeDto> TamanhosQuantidades { get; set; } = new List<TamanhoQuantidadeDto>();
+        public List<ProdutoImagemDto> Imagens { get; set; } = new List<ProdutoImagemDto>();
 
         public Dictionary<string, int> EstoquePorTamanho
         {

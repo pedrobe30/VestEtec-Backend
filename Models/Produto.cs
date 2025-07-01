@@ -43,6 +43,7 @@ public partial class Produto
     [StringLength(255)]
     public string? descricao { get; set; }
 
+    // Navegação para outras entidades
     [ForeignKey("IdCategoria")]
     [InverseProperty("Produtos")]
     public virtual Categoria IdCategoriaNavigation { get; set; } = null!;
@@ -59,9 +60,14 @@ public partial class Produto
     [InverseProperty("Produtos")]
     public virtual Tecido? IdTecidoNavigation { get; set; }
 
+    // Coleções de entidades relacionadas
     [InverseProperty("IdProdutoNavigation")]
     public virtual ICollection<Estoque> Estoque { get; set; } = new List<Estoque>();
 
     [InverseProperty("IdProdutoNavigation")]
     public virtual ICollection<Itensencomendado> Itensencomendados { get; set; } = new List<Itensencomendado>();
+
+    // NOVA NAVEGAÇÃO PARA MÚLTIPLAS IMAGENS
+    [InverseProperty("IdProdutoNavigation")]
+    public virtual ICollection<ProdutoImagem> ProdutoImagens { get; set; } = new List<ProdutoImagem>();
 }
